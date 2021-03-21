@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\pharmacy_image.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -64,62 +67,76 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DBContext.cs">
+    <Compile Include="Database\DBContext.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
+    <Compile Include="Pages\ListMedications.xaml.cs">
+      <DependentUpon>ListMedications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegOrder.xaml.cs">
+      <DependentUpon>RegOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagrams.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Адрес.cs">
+    <Compile Include="Database\Адрес.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Должность.cs">
+    <Compile Include="Database\Должность.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Заказ.cs">
+    <Compile Include="Database\Заказ.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Заказ_Препарат.cs">
+    <Compile Include="Database\Заказ_Препарат.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Изготовитель.cs">
+    <Compile Include="Database\Изготовитель.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Контактные_данные.cs">
+    <Compile Include="Database\Контактные_данные.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Личные_данные.cs">
+    <Compile Include="Database\Личные_данные.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Назначение.cs">
+    <Compile Include="Database\Назначение.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Пользователи.cs">
+    <Compile Include="Database\Пользователи.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Поставка.cs">
+    <Compile Include="Database\Поставка.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Поставщик.cs">
+    <Compile Include="Database\Поставщик.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Препарат.cs">
+    <Compile Include="Database\Препарат.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Препарат_Поставка.cs">
+    <Compile Include="Database\Препарат_Поставка.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Склад.cs">
+    <Compile Include="Database\Склад.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Сотрудник.cs">
+    <Compile Include="Database\Сотрудник.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Социальная_карта.cs">
+    <Compile Include="Database\Социальная_карта.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
+    <Page Include="Pages\ListMedications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RegOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,12 +149,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DBContext.Context.cs">
+    <Compile Include="Database\DBContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext.Designer.cs">
+    <Compile Include="Database\DBContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.edmx</DependentUpon>
@@ -168,11 +185,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DBContext.edmx">
+    <EntityDeploy Include="Database\DBContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DBContext.edmx.diagram">
+    <None Include="Database\DBContext.edmx.diagram">
       <DependentUpon>DBContext.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -185,22 +202,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBContext.Context.tt">
+    <Content Include="Database\DBContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DBContext.Context.cs</LastGenOutput>
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Content>
-    <Content Include="DBContext.tt">
+    <Content Include="Database\DBContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBContext.edmx</DependentUpon>
       <LastGenOutput>DBContext.cs</LastGenOutput>
     </Content>
+    <Resource Include="pharmacy_icon.ico" />
+    <Resource Include="pharmacy_image.ico" />
+    <Resource Include="Images\pharmacy_image.ico" />
+    <Resource Include="Images\pharmacy_image.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

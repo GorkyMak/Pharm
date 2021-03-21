@@ -42,5 +42,10 @@ namespace Pharm
             new Windows.Authorization().Show();
             Close();
         }
+
+        private void BtnRegOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

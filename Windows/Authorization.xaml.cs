@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
+using Pharm.Database;
 
 namespace Pharm.Windows
 {

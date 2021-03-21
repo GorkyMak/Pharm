@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharm"
         mc:Ignorable="d"
-        Title="Главное окно" Height="450" Width="800">
+        Title="Главное окно" Height="600" Width="900" WindowStartupLocation="CenterScreen">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,10 +18,11 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Label x:Name="LUserRole" FontSize="18" Content="Role"/>
+            <Label x:Name="LUserRole" FontSize="18" Content=""/>
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="5">
+            <Button Margin="0 5 0 0"  Content="Оформить заказ" x:Name="BtnRegOrder" Click="BtnRegOrder_Click"/>
             <Button Margin="0 5 0 0"  Content="Назад" x:Name="BtnBack" Click="BtnBack_Click"/>
             <Button Margin="0 5 0 0"  Content="Вперёд" x:Name="BtnGo" Click="BtnGo_Click"/>
             <Button Margin="0 5 0 0"  Content="Выйти" x:Name="BtnExit" Click="BtnExit_Click"/>

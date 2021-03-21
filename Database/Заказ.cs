@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pharm
+namespace Pharm.Database
 {
     using System;
     using System.Collections.Generic;

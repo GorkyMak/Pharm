@@ -8,6 +8,7 @@
         Title="Authorization" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     
     <StackPanel VerticalAlignment="Center">
+        <Image Height="100" Width="108" Source="/Images/pharmacy_image.png"/>
         <Label Content="Вход в систему" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="18"/>
         <Label Content="Логин" HorizontalAlignment="Center" Margin="0 10 0 0"/>
         <TextBox HorizontalAlignment="Center" x:Name="TBLogin" Width="200" Margin="0 1"/>

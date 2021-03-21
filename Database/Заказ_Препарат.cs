@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pharm
+namespace Pharm.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Склад
+    public partial class Заказ_Препарат
     {
-        public int Код_склада { get; set; }
-        public Nullable<int> Код_адреса { get; set; }
+        public int Код_заказа { get; set; }
+        public int Код_препарата { get; set; }
         public int Количество_препарата { get; set; }
-        public int Площадь_м2 { get; set; }
     
-        public virtual Адрес Адрес { get; set; }
+        public virtual Заказ Заказ { get; set; }
+        public virtual Препарат Препарат { get; set; }
     }
 }

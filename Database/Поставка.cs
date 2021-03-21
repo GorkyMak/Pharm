@@ -7,25 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pharm
+namespace Pharm.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Поставщик
+    public partial class Поставка
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Поставщик()
+        public Поставка()
         {
-            this.Поставка = new HashSet<Поставка>();
+            this.Препарат_Поставка = new HashSet<Препарат_Поставка>();
         }
     
-        public int Код_поставщика { get; set; }
-        public Nullable<int> Код_контактных_данных { get; set; }
-        public string Название { get; set; }
+        public int Код_поставки { get; set; }
+        public Nullable<int> Код_поставщика { get; set; }
+        public decimal Стоимость__ { get; set; }
     
-        public virtual Контактные_данные Контактные_данные { get; set; }
+        public virtual Поставщик Поставщик { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Поставка> Поставка { get; set; }
+        public virtual ICollection<Препарат_Поставка> Препарат_Поставка { get; set; }
     }
 }

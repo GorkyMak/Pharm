@@ -7,32 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pharm
+namespace Pharm.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Препарат
+    public partial class Адрес
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Препарат()
+        public Адрес()
         {
-            this.Заказ_Препарат = new HashSet<Заказ_Препарат>();
-            this.Препарат_Поставка = new HashSet<Препарат_Поставка>();
+            this.Контактные_данные = new HashSet<Контактные_данные>();
+            this.Склад = new HashSet<Склад>();
         }
     
-        public int Код_препарата { get; set; }
-        public Nullable<int> Код_назначения { get; set; }
-        public Nullable<int> Код_изготовителя { get; set; }
-        public string Название { get; set; }
-        public decimal Закупочная_цена { get; set; }
-        public decimal Конечная_цена { get; set; }
+        public int Код_адреса { get; set; }
+        public string Страна { get; set; }
+        public string Субъект { get; set; }
+        public string Город { get; set; }
+        public string Улица { get; set; }
+        public string Дом { get; set; }
+        public string Квартира { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Заказ_Препарат> Заказ_Препарат { get; set; }
-        public virtual Изготовитель Изготовитель { get; set; }
-        public virtual Назначение Назначение { get; set; }
+        public virtual ICollection<Контактные_данные> Контактные_данные { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Препарат_Поставка> Препарат_Поставка { get; set; }
+        public virtual ICollection<Склад> Склад { get; set; }
     }
 }

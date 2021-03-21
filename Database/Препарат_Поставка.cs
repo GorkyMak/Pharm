@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pharm
+namespace Pharm.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class Препарат_Поставка
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Код_препарата { get; set; }
+        public int Код_поставки { get; set; }
+        public int Количество_препарата { get; set; }
+    
+        public virtual Поставка Поставка { get; set; }
+        public virtual Препарат Препарат { get; set; }
     }
 }
