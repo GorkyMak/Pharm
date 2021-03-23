@@ -4,6 +4,100 @@
              xmlns:local="clr-namespace:Pharm"
              StartupUri="Windows/Authorization.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="GeneralFont">Segoe UI</FontFamily>
+        <SolidColorBrush x:Key="BorderColor">LightGray</SolidColorBrush>
+        <SolidColorBrush x:Key="AccentColor">Turquoise</SolidColorBrush>
+        <SolidColorBrush x:Key="DarkAccentColor">DarkTurquoise</SolidColorBrush>
+        
+        <Style TargetType="Button" x:Key="BaseBtnStyle">
+            <Setter Property="Padding" Value="15,2"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="FontFamily" Value="{StaticResource GeneralFont}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource DarkAccentColor}"/>
+                    <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="BaseTBlStyle">
+            <Setter Property="FontFamily" Value="{StaticResource GeneralFont}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="LightSlateGray"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="BaseTBStyle">
+            <Style.Setters>
+                <Setter Property="FontFamily" Value="{StaticResource GeneralFont}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Height" Value="21"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            <Grid>
+                                <ContentPresenter  VerticalAlignment="Center" Height="{TemplateBinding Height}"/>
+                                <Border x:Name="TBBorder" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{StaticResource BorderColor}" CornerRadius="1"/>
+                                <ScrollViewer x:Name="PART_ContentHost" Margin="3 0 0 0" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="TBBorder" Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Style.Setters>
+                <Setter Property="FontFamily" Value="{StaticResource GeneralFont}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Height" Value="21"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="PasswordBox">
+                            <Grid>
+                                <ContentPresenter VerticalAlignment="Center" Height="{TemplateBinding Height}"/>
+                                <Border x:Name="TBBorder" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{StaticResource BorderColor}" CornerRadius="1"/>
+                                <ScrollViewer x:Name="PART_ContentHost" Margin="3 0 0 0" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="TBBorder" Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+
+        <Style TargetType="Label" x:Key="LabelDefault">
+            <Setter Property="Foreground" Value="LightSlateGray"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="{StaticResource GeneralFont}"/>
+        </Style>
     </Application.Resources>
 </Application>

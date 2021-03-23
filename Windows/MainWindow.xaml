@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:Pharm"
         mc:Ignorable="d"
         Title="Главное окно" Height="600" Width="900" WindowStartupLocation="CenterScreen">
-    
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseBtnStyle}"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="175"/>

@@ -5,7 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharm.Windows"
         mc:Ignorable="d"
-        Title="Authorization" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Авторизация" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTBStyle}"/>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseBtnStyle}">
+            <Setter Property="IsDefault" Value="True"/>
+        </Style>
+    </Window.Resources>
     
     <StackPanel VerticalAlignment="Center">
         <Image Height="100" Width="108" Source="/Images/pharmacy_image.png"/>
