@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharm.Database;
+using System;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Pharm
 {
@@ -20,9 +11,12 @@ namespace Pharm
     /// </summary>
     public partial class MainWindow : Window
     {
+        const string Path = "UserData.json";
         public MainWindow()
         {
             InitializeComponent();
+
+            //LUserRole.Content = "Здраствуйте, " + Properties.Settings.Default.UserRole;
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -45,6 +39,28 @@ namespace Pharm
 
         private void BtnRegOrder_Click(object sender, RoutedEventArgs e)
         {
+            FrMain.Navigate(new Uri("Pages/RegOrder.xaml", UriKind.Relative));
+        }
+
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListOrders.xaml", UriKind.Relative));
+        }
+
+        private void BtnEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListEmployees.xaml", UriKind.Relative));
+        }
+
+        private void BtnMedication_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListMedications.xaml", UriKind.Relative));
+
+        }
+
+        private void BtnSocCard_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListSocCards.xaml", UriKind.Relative));
 
         }
     }

@@ -22,16 +22,15 @@ namespace Pharm.Database
         }
     
         public int Код_препарата { get; set; }
-        public Nullable<int> Код_назначения { get; set; }
-        public Nullable<int> Код_изготовителя { get; set; }
+        public int Код_изготовителя { get; set; }
         public string Название { get; set; }
-        public decimal Закупочная_цена { get; set; }
-        public decimal Конечная_цена { get; set; }
+        public string Группа { get; set; }
+        public decimal Закупочная_цена__ { get; set; }
+        public decimal Конечная_цена__ { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Заказ_Препарат> Заказ_Препарат { get; set; }
         public virtual Изготовитель Изготовитель { get; set; }
-        public virtual Назначение Назначение { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Препарат_Поставка> Препарат_Поставка { get; set; }
     }

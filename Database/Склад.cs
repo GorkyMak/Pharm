@@ -15,10 +15,6 @@ namespace Pharm.Database
     public partial class Склад
     {
         public int Код_склада { get; set; }
-        public Nullable<int> Код_адреса { get; set; }
-        public int Количество_препарата { get; set; }
         public int Площадь_м2 { get; set; }
-    
-        public virtual Адрес Адрес { get; set; }
     }
 }

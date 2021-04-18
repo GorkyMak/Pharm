@@ -25,7 +25,6 @@ namespace Pharm.Database
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Адрес> Адрес { get; set; }
         public virtual DbSet<Должность> Должность { get; set; }
         public virtual DbSet<Заказ> Заказ { get; set; }
@@ -33,7 +32,6 @@ namespace Pharm.Database
         public virtual DbSet<Изготовитель> Изготовитель { get; set; }
         public virtual DbSet<Контактные_данные> Контактные_данные { get; set; }
         public virtual DbSet<Личные_данные> Личные_данные { get; set; }
-        public virtual DbSet<Назначение> Назначение { get; set; }
         public virtual DbSet<Пользователи> Пользователи { get; set; }
         public virtual DbSet<Поставка> Поставка { get; set; }
         public virtual DbSet<Поставщик> Поставщик { get; set; }

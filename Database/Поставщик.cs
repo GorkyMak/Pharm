@@ -21,7 +21,7 @@ namespace Pharm.Database
         }
     
         public int Код_поставщика { get; set; }
-        public Nullable<int> Код_контактных_данных { get; set; }
+        public int Код_контактных_данных { get; set; }
         public string Название { get; set; }
     
         public virtual Контактные_данные Контактные_данные { get; set; }

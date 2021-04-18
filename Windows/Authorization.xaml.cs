@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using Pharm.Database;
+using System.IO;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows;
-using Pharm.Database;
 
 namespace Pharm.Windows
 {
@@ -9,6 +12,7 @@ namespace Pharm.Windows
     /// </summary>
     public partial class Authorization : Window
     {
+        const string Path = "UserData.json";
         public Authorization()
         {
             InitializeComponent();
@@ -17,15 +21,14 @@ namespace Pharm.Windows
         private async void LogIn_Click(object sender, RoutedEventArgs e)
         {
             string Login = TBLogin.Text, Password = PBPassword.Password;
-            Пользователи User = null;
 
             if (CheckFields(ref Login, ref Password) == false)
                 return;
 
-            //User = await FindUser(Login);
+            Пользователи User = await FindUser(Login);
 
-            //if (CheckUser(ref User, ref Password) == false)
-            //    return;
+            if (CheckUser(ref User, ref Password) == false)
+                return;
 
             LogIn(ref User);
         }
@@ -52,8 +55,8 @@ namespace Pharm.Windows
 
         private async static Task<Пользователи> FindUser(string Login)
         {
-                using (АптекаEntities context = new АптекаEntities())
-                    return await Task.Run(() => context.Пользователи.Find(Login));
+            using (АптекаEntities context = new АптекаEntities())
+                return await Task.Run(() => context.Пользователи.Find(Login));
         }
 
         private bool CheckUser(ref Пользователи user, ref string Password)
@@ -73,9 +76,9 @@ namespace Pharm.Windows
             return true;
         }
 
-        private void LogIn(ref Пользователи user)
+        private void LogIn(ref Пользователи User)
         {
-            //Properties.Settings.Default.UserRole = user.Роль;
+            Properties.Settings.Default.UserRole = User.Роль;
             new MainWindow().Show();
             Close();
         }

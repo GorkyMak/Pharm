@@ -22,8 +22,7 @@ namespace Pharm.Database
     
         public int Код_должности { get; set; }
         public string Название_должности { get; set; }
-        public string Описание_должности { get; set; }
-        public decimal Зарплата__ { get; set; }
+        public decimal Оклад__ { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Сотрудник> Сотрудник { get; set; }

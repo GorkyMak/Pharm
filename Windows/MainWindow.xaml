@@ -19,12 +19,18 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+
+        <Image Source="/Images/pharmacy_image.png"/>
         <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Label x:Name="LUserRole" FontSize="18" Content=""/>
+            <Label x:Name="LUserRole" FontSize="18" Content="Role"/>
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="5">
-            <Button Margin="0 5 0 0"  Content="Оформить заказ" x:Name="BtnRegOrder" Click="BtnRegOrder_Click"/>
+            <!--<Button Margin="0 5 0 0"  Content="Оформить заказ" x:Name="BtnRegOrder" Click="BtnRegOrder_Click"/>-->
+            <!--<Button Margin="0 5 0 0"  Content="Заказы" x:Name="BtnOrder" Click="BtnOrder_Click"/>-->
+            <Button Margin="0 5 0 0"  Content="Сотрудники" x:Name="BtnEmployee" Click="BtnEmployee_Click"/>
+            <Button Margin="0 5 0 0"  Content="Препараты" x:Name="BtnMedication" Click="BtnMedication_Click"/>
+            <Button Margin="0 5 0 0"  Content="Социальные карты" x:Name="BtnSocCard" Click="BtnSocCard_Click"/>
             <Button Margin="0 5 0 0"  Content="Назад" x:Name="BtnBack" Click="BtnBack_Click"/>
             <Button Margin="0 5 0 0"  Content="Вперёд" x:Name="BtnGo" Click="BtnGo_Click"/>
             <Button Margin="0 5 0 0"  Content="Выйти" x:Name="BtnExit" Click="BtnExit_Click"/>

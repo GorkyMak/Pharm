@@ -21,7 +21,7 @@ namespace Pharm.Database
         }
     
         public int Код_социальной_карты { get; set; }
-        public Nullable<int> Код_личных_данных_владельца { get; set; }
+        public int Код_личных_данных_владельца { get; set; }
         public System.DateTime Срок_действия { get; set; }
         public decimal Скидка { get; set; }
     

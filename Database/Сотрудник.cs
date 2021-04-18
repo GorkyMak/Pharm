@@ -21,10 +21,10 @@ namespace Pharm.Database
         }
     
         public int Код_сотрудника { get; set; }
-        public Nullable<int> Код_должности { get; set; }
-        public Nullable<int> Код_контактных_данных { get; set; }
+        public int Код_должности { get; set; }
+        public int Код_контактных_данных { get; set; }
         public string Логин { get; set; }
-        public Nullable<int> Код_личных_данных { get; set; }
+        public int Код_личных_данных { get; set; }
         public System.DateTime Дата_приёма_на_работу { get; set; }
     
         public virtual Должность Должность { get; set; }

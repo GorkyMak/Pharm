@@ -45,10 +45,27 @@
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -67,69 +84,84 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Database\DBContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.tt</DependentUpon>
+    <Compile Include="Pages\ListEmployees.xaml.cs">
+      <DependentUpon>ListEmployees.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ListMedications.xaml.cs">
       <DependentUpon>ListMedications.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ListOrders.xaml.cs">
+      <DependentUpon>ListOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListSocCards.xaml.cs">
+      <DependentUpon>ListSocCards.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RegOrder.xaml.cs">
       <DependentUpon>RegOrder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Database\sysdiagrams.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+    <Compile Include="Database\PharmModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Адрес.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Должность.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Заказ.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Заказ_Препарат.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Изготовитель.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Контактные_данные.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Личные_данные.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Назначение.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Пользователи.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Поставка.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Поставщик.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Препарат.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Препарат_Поставка.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Склад.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Сотрудник.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Социальная_карта.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
+    <Page Include="Pages\ListEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ListMedications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListSocCards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,15 +181,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Database\DBContext.Context.cs">
+    <Compile Include="Database\PharmModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.Context.tt</DependentUpon>
+      <DependentUpon>PharmModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\DBContext.Designer.cs">
+    <Compile Include="Database\PharmModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.edmx</DependentUpon>
+      <DependentUpon>PharmModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Windows\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
@@ -185,14 +217,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Database\DBContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Database\DBContext.edmx.diagram">
-      <DependentUpon>DBContext.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="Database\PharmModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PharmModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\PharmModel.edmx.diagram">
+      <DependentUpon>PharmModel.edmx</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,16 +234,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database\DBContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBContext.Context.cs</LastGenOutput>
-      <DependentUpon>DBContext.edmx</DependentUpon>
-    </Content>
-    <Content Include="Database\DBContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBContext.edmx</DependentUpon>
-      <LastGenOutput>DBContext.cs</LastGenOutput>
-    </Content>
     <Resource Include="pharmacy_icon.ico" />
     <Resource Include="pharmacy_image.ico" />
     <Resource Include="Images\pharmacy_image.ico" />
@@ -219,6 +241,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\PharmModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PharmModel.edmx</DependentUpon>
+      <LastGenOutput>PharmModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\PharmModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PharmModel.edmx</DependentUpon>
+      <LastGenOutput>PharmModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
