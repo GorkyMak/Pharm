@@ -13,7 +13,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код препарата" Binding="{Binding Код_препарата}"/>
                 <DataGridTextColumn Header="Код изготовителя" Binding="{Binding Код_изготовителя}"/>
-                <DataGridTextColumn Header="Название" Binding="{Binding Название}"/>
+                <DataGridTextColumn Header="Название изготовителя" Binding="{Binding Название_изготовителя}"/>
+                <DataGridTextColumn Header="Название препарата" Binding="{Binding Название}"/>
                 <DataGridTextColumn Header="Группа" Binding="{Binding Группа}"/>
                 <DataGridTextColumn Header="Закупочная цена" Binding="{Binding Закупочная_цена__}"/>
                 <DataGridTextColumn Header="Конечная цена" Binding="{Binding Конечная_цена__}"/>

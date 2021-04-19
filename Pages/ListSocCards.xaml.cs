@@ -1,18 +1,7 @@
 ﻿using Pharm.Database;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Pharm.Pages
 {
@@ -21,11 +10,38 @@ namespace Pharm.Pages
     /// </summary>
     public partial class ListSocCards : Page
     {
+        List<SocCards> SocCards;
         public ListSocCards()
         {
-            InitializeComponent(); 
-            using (var dbcontext = new АптекаEntities())
-                DGSocCards.ItemsSource = dbcontext.Социальная_карта.ToList();
+            InitializeComponent();
+            GetEmployees();
+            DGSocCards.ItemsSource = SocCards;
         }
+        private void GetEmployees()
+        {
+            SocCards = new List<SocCards>();
+            using (var dbcontext = new АптекаEntities())
+            {
+                var temp = dbcontext.Социальная_карта.ToList();
+                foreach (var item in temp)
+                {
+                    SocCards.Add(new SocCards()
+                    {
+                        Код_социальной_карты = item.Код_социальной_карты,
+                        ФИО_владельца = item.Фамилия + " " + item.Имя[0] + "." + item.Отчество[0] + ".",
+                        Срок_действия = item.Срок_действия,
+                        Скидка = item.Скидка
+                    });
+                }
+            }
+        }
+    }
+
+    class SocCards
+    {
+        public int Код_социальной_карты { get; set; }
+        public string ФИО_владельца { get; set; }
+        public System.DateTime Срок_действия { get; set; }
+        public decimal Скидка { get; set; }
     }
 }

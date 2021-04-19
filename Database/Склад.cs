@@ -14,7 +14,16 @@ namespace Pharm.Database
     
     public partial class Склад
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Склад()
+        {
+            this.Поставка = new HashSet<Поставка>();
+        }
+    
         public int Код_склада { get; set; }
         public int Площадь_м2 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Поставка> Поставка { get; set; }
     }
 }

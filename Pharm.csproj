@@ -84,25 +84,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pages\ListEmployees.xaml.cs">
-      <DependentUpon>ListEmployees.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ListMedications.xaml.cs">
-      <DependentUpon>ListMedications.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ListOrders.xaml.cs">
-      <DependentUpon>ListOrders.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ListSocCards.xaml.cs">
-      <DependentUpon>ListSocCards.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\RegOrder.xaml.cs">
-      <DependentUpon>RegOrder.xaml</DependentUpon>
+    <Compile Include="Classes\Middle_Medications.cs" />
+    <Compile Include="Database\PharmModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\PharmModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PharmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PharmModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Database\Адрес.cs">
       <DependentUpon>PharmModel.tt</DependentUpon>
@@ -149,7 +145,48 @@
     <Compile Include="Database\Социальная_карта.cs">
       <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ListDeliveries.xaml.cs">
+      <DependentUpon>ListDeliveries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListEmployees.xaml.cs">
+      <DependentUpon>ListEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListManufacturer.xaml.cs">
+      <DependentUpon>ListManufacturer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListMedications.xaml.cs">
+      <DependentUpon>ListMedications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListOrders.xaml.cs">
+      <DependentUpon>ListOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListPositions.xaml.cs">
+      <DependentUpon>ListPositions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListSocCards.xaml.cs">
+      <DependentUpon>ListSocCards.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListSuppliers.xaml.cs">
+      <DependentUpon>ListSuppliers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListUsers.xaml.cs">
+      <DependentUpon>ListUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListWarehouses.xaml.cs">
+      <DependentUpon>ListWarehouses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegOrder.xaml.cs">
+      <DependentUpon>RegOrder.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\ListDeliveries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ListEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListManufacturer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,7 +198,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ListPositions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ListSocCards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListSuppliers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListWarehouses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,16 +233,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Database\PharmModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PharmModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\PharmModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PharmModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Windows\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
@@ -217,7 +260,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <EntityDeploy Include="Database\PharmModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PharmModel.Designer.cs</LastGenOutput>
@@ -225,6 +267,7 @@
     <None Include="Database\PharmModel.edmx.diagram">
       <DependentUpon>PharmModel.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -254,6 +297,5 @@
       <LastGenOutput>PharmModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

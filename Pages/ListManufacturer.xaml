@@ -1,0 +1,27 @@
+﻿<Page x:Class="Pharm.Pages.ListManufacturer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Pharm.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ListManufacturer">
+
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single" x:Name="DGManufacturer">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код изготовителя" Binding="{Binding Код_изготовителя}"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Название}"/>
+                <DataGridTextColumn Header="Субъект" Binding="{Binding Субъект}"/>
+                <DataGridTextColumn Header="Город" Binding="{Binding Город}"/>
+                <DataGridTextColumn Header="Улица" Binding="{Binding Улица}"/>
+                <DataGridTextColumn Header="Дом" Binding="{Binding Дом}"/>
+                <DataGridTextColumn Header="Квартира" Binding="{Binding Квартира}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Номер_телефона}"/>
+                <DataGridTextColumn Header="Сайт" Binding="{Binding Сайт}"/>
+                <DataGridTextColumn Header="Электронная почта" Binding="{Binding Электронная_почта}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

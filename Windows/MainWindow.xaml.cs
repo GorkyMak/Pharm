@@ -11,7 +11,6 @@ namespace Pharm
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string Path = "UserData.json";
         public MainWindow()
         {
             InitializeComponent();
@@ -55,13 +54,41 @@ namespace Pharm
         private void BtnMedication_Click(object sender, RoutedEventArgs e)
         {
             FrMain.Navigate(new Uri("Pages/ListMedications.xaml", UriKind.Relative));
-
         }
 
         private void BtnSocCard_Click(object sender, RoutedEventArgs e)
         {
             FrMain.Navigate(new Uri("Pages/ListSocCards.xaml", UriKind.Relative));
+        }
 
+        private void BtnDelivery_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListDeliveries.xaml", UriKind.Relative));
+        }
+
+        private void BtnPositions_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListPositions.xaml", UriKind.Relative));
+        }
+
+        private void BtnManufacturer_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListManufacturer.xaml", UriKind.Relative));
+        }
+
+        private void BtnUser_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListUsers.xaml", UriKind.Relative));
+        }
+
+        private void BtnSuppliers_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListSuppliers.xaml", UriKind.Relative));
+        }
+
+        private void BtnWarehouses_Click(object sender, RoutedEventArgs e)
+        {
+            FrMain.Navigate(new Uri("Pages/ListWarehouses.xaml", UriKind.Relative));
         }
     }
 }

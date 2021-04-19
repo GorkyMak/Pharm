@@ -4,36 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9acf287caff24d0696ec9d7de58ff2df" Name="Diagram1">
-        <EntityTypeShape EntityType="АптекаModel.Адрес" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Должность" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Заказ" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Заказ_Препарат" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Изготовитель" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Контактные_данные" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Личные_данные" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Пользователи" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Поставка" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Поставщик" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Препарат" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Препарат_Поставка" Width="1.5" PointX="7.5" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Склад" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Сотрудник" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="АптекаModel.Социальная_карта" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <AssociationConnector Association="АптекаModel.FK__Контактны__Код_а__32E0915F" ManuallyRouted="false" />
+      <Diagram DiagramId="01e148e7635c487b9f17767c54cce59e" Name="Diagram1">
+        <EntityTypeShape EntityType="АптекаModel.Адрес" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Должность" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Заказ" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Заказ_Препарат" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Изготовитель" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Контактные_данные" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Личные_данные" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Пользователи" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Поставка" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Поставщик" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Препарат" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Препарат_Поставка" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Склад" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Сотрудник" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="АптекаModel.Социальная_карта" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="АптекаModel.FK__Контактны__Код_а__31EC6D26" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Сотрудник__Код_д__4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Заказ__Код_сотру__48CFD27E" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Заказ__Код_социа__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Заказ_Пре__Код_з__5535A963" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Заказ_Пре__Код_п__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="АптекаModel.FK__Изготовит__Код_к__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="АптекаModel.FK__Изготовит__Код_к__35BCFE0A" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Препарат__Код_из__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="АптекаModel.FK__Поставщик__Код_к__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="АптекаModel.FK__Поставщик__Код_к__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Сотрудник__Код_к__440B1D61" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Сотрудник__Код_л__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="АптекаModel.FK__Социальна__Код_л__2D27B809" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Сотрудник__Логин__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="АптекаModel.FK__Поставка__Код_по__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="АптекаModel.FK__Поставка__Код_по__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="АптекаModel.FK__Поставка__Код_ск__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Препарат___Код_п__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="АптекаModel.FK__Препарат___Код_п__5165187F" ManuallyRouted="false" />
       </Diagram>

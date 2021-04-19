@@ -12,8 +12,8 @@
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single" x:Name="DGSocCards">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код социальной карты" Binding="{Binding Код_социальной_карты}"/>
-                <DataGridTextColumn Header="Код личных данных владельца" Binding="{Binding Код_личных_данных_владельца}"/>
-                <DataGridTextColumn Header="Срок действия" Binding="{Binding Срок_действия}"/>
+                <DataGridTextColumn Header="ФИО владельца" Binding="{Binding ФИО_владельца}"/>
+                <DataGridTextColumn Header="Срок действия" Binding="{Binding Срок_действия, StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="Скидка" Binding="{Binding Скидка}"/>
             </DataGrid.Columns>
         </DataGrid>

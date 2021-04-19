@@ -12,11 +12,23 @@
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single" x:Name="DGEmpl">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код сотрудника" Binding="{Binding Код_сотрудника}"/>
-                <DataGridTextColumn Header="Код должности" Binding="{Binding Код_должности}"/>
-                <DataGridTextColumn Header="Код контактных данных" Binding="{Binding Код_контактных_данных}"/>
+                <DataGridTextColumn Header="Название должности" Binding="{Binding Название_должности}"/>
+                <DataGridTextColumn Header="Оклад" Binding="{Binding Оклад__}"/>
+                <DataGridTextColumn Header="ФИО сотрудника" Binding="{Binding ФИО}"/>
+                <DataGridTextColumn Header="Серия и номер паспорта" Binding="{Binding Серия_и_номер_паспорта}"/>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding Дата_рождения, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Образование" Binding="{Binding Образование}"/>
+                <DataGridTextColumn Header="Субъект" Binding="{Binding Субъект}"/>
+                <DataGridTextColumn Header="Город" Binding="{Binding Город}"/>
+                <DataGridTextColumn Header="Улица" Binding="{Binding Улица}"/>
+                <DataGridTextColumn Header="Дом" Binding="{Binding Дом}"/>
+                <DataGridTextColumn Header="Квартира" Binding="{Binding Квартира}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Номер_телефона}"/>
+                <DataGridTextColumn Header="Электронная почта" Binding="{Binding Электронная_почта}"/>
                 <DataGridTextColumn Header="Логин" Binding="{Binding Логин}"/>
-                <DataGridTextColumn Header="Код личных данных" Binding="{Binding Код_личных_данных}"/>
-                <DataGridTextColumn Header="Дата приёма на работу" Binding="{Binding Дата_приёма_на_работу}"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Пароль}"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Роль}"/>
+                <DataGridTextColumn Header="Дата приёма на работу" Binding="{Binding Дата_приёма_на_работу, StringFormat=dd.MM.yyyy}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
