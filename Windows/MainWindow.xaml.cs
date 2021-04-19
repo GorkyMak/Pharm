@@ -15,7 +15,7 @@ namespace Pharm
         {
             InitializeComponent();
 
-            //LUserRole.Content = "Здраствуйте, " + Properties.Settings.Default.UserRole;
+            LUserRole.Content = "Здраствуйте, " + Properties.Settings.Default.UserRole;
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

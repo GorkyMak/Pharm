@@ -1,7 +1,4 @@
 ﻿using Pharm.Database;
-using System.IO;
-using System.Text.Encodings.Web;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -12,7 +9,6 @@ namespace Pharm.Windows
     /// </summary>
     public partial class Authorization : Window
     {
-        const string Path = "UserData.json";
         public Authorization()
         {
             InitializeComponent();
