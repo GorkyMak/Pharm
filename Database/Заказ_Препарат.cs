@@ -14,8 +14,9 @@ namespace Pharm.Database
     
     public partial class Заказ_Препарат
     {
-        public int Код_заказа { get; set; }
-        public int Код_препарата { get; set; }
+        public int Код_заказа_препарата { get; set; }
+        public Nullable<int> Код_заказа { get; set; }
+        public Nullable<int> Код_препарата { get; set; }
         public int Количество_препарата { get; set; }
     
         public virtual Заказ Заказ { get; set; }

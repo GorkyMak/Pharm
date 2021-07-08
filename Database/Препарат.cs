@@ -27,6 +27,7 @@ namespace Pharm.Database
         public string Группа { get; set; }
         public decimal Закупочная_цена__ { get; set; }
         public decimal Конечная_цена__ { get; set; }
+        public Nullable<int> Кол_во { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Заказ_Препарат> Заказ_Препарат { get; set; }

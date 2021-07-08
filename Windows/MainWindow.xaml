@@ -1,47 +1,97 @@
-﻿<Window x:Class="Pharm.MainWindow"
+﻿<Window x:Class="Pharm.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Pharm"
+        xmlns:local="clr-namespace:Pharm.Windows"
         mc:Ignorable="d"
         Title="Главное окно" Height="600" Width="900" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseBtnStyle}">
-            <Setter Property="Margin" Value="0 5 0 0"/>
+        <Style TargetType="RadioButton" BasedOn="{StaticResource HeaderRadBtnStyle}"/>
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Margin" Value="5 0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
         </Style>
     </Window.Resources>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="175"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Grid Grid.Column="1">
+            <StackPanel HorizontalAlignment="Left"  Orientation="Horizontal">
+                <Image Source="/Images/pharmacy_image.png" Margin="5"/>
+                <Label x:Name="LUserRole" FontSize="18" Content="Здраствуйте, " VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <Image Source="/Images/pharmacy_image.png" Margin="5"/>
-        <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Label x:Name="LUserRole" FontSize="18" Content="Role"/>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button x:Name="BtnAboutProg" Content="О программе" Click="BtnAboutProg_Click"/>
+                <Button x:Name="BtnHelp" Content="Справка" Click="BtnHelp_Click"/>
+            </StackPanel>
         </Grid>
 
-        <StackPanel Grid.Row="1" Margin="5">
-            <Button Content="Заказы" x:Name="BtnOrder" Click="BtnOrder_Click" Margin="0"/>
-            <Button Content="Поставки" x:Name="BtnDelivery" Click="BtnDelivery_Click"/>
-            <Button Content="Сотрудники" x:Name="BtnEmployee" Click="BtnEmployee_Click"/>
-            <Button Content="Препараты" x:Name="BtnMedication" Click="BtnMedication_Click"/>
-            <Button Content="Должности" x:Name="BtnPosition" Click="BtnPositions_Click"/>
-            <Button Content="Изготовители" x:Name="BtnManufacturer" Click="BtnManufacturer_Click"/>
-            <Button Content="Поставщики" x:Name="BtnSuppliers" Click="BtnSuppliers_Click"/>
-            <Button Content="Пользователи" x:Name="BtnUsers" Click="BtnUser_Click"/>
-            <Button Content="Склады" x:Name="BtnWarehouses" Click="BtnWarehouses_Click"/>
-            <Button Content="Социальные карты" x:Name="BtnSocCard" Click="BtnSocCard_Click"/>
-            <Button Content="Назад" x:Name="BtnBack" Click="BtnBack_Click"/>
-            <Button Content="Вперёд" x:Name="BtnGo" Click="BtnGo_Click"/>
-            <Button Content="Выйти" x:Name="BtnExit" Click="BtnExit_Click"/>
-        </StackPanel>
-        <Frame Grid.Row="1" Grid.Column="1" x:Name="FrMain" NavigationUIVisibility="Hidden"/>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button x:Name="BtnBack" Click="BtnBack_Click">
+                    <Button.Content>
+                        <Path Width="15" Height="15" Stroke="Black" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round"
+                              Data="
+                              M 24.5 12.5
+                              H 0.5
+                              L 12.5 0.5
+                              M 0.5 12.5
+                              L 12.5 24.5"/>
+                    </Button.Content>
+                </Button>
+                
+                <Button x:Name="BtnGo" Click="BtnGo_Click" FlowDirection="RightToLeft">
+                    <Button.Content>
+                        <Path Width="15" Height="15" Stroke="Black" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round"
+                              Data="
+                              M 24.5 12.5
+                              H 0.5
+                              L 12.5 0.5
+                              M 0.5 12.5
+                              L 12.5 24.5"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton Content="Заказы" x:Name="BtnOrder" Click="BtnOrder_Click" />
+                <RadioButton Content="Поставки" x:Name="BtnDelivery" Click="BtnDelivery_Click"/>
+                <RadioButton Content="Сотрудники" x:Name="BtnEmployee" Click="BtnEmployee_Click"/>
+                <RadioButton Content="Препараты" x:Name="BtnMedication" Click="BtnMedication_Click"/>
+                <RadioButton Content="Пользователи" x:Name="BtnUser" Click="BtnUser_Click"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="BtnExit" Click="BtnExit_Click" FlowDirection="RightToLeft">
+                    <Button.Content>
+                        <Path Width="17" Height="17" Stroke="Black" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" StrokeEndLineCap="Round" StrokeStartLineCap="Round"
+                              Data="
+                              M 0.5 0.5
+                              H 14.5
+                              V 4
+                              M 14.5 11
+                              V 14.5
+                              H 0.5
+                              V 0.5
+                              
+                              M 14.5 7.5
+                              H 2.5
+                              L 7.5 2.5
+                              M 2.5 7.5
+                              L 7.5 12.5"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
+        
+        <Frame Grid.Row="2" x:Name="FrMain" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

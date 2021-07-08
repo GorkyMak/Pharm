@@ -14,6 +14,7 @@ namespace Pharm.Database
     
     public partial class Препарат_Поставка
     {
+        public int Код_препарата_поставки { get; set; }
         public int Код_препарата { get; set; }
         public int Код_поставки { get; set; }
         public int Количество_препарата { get; set; }

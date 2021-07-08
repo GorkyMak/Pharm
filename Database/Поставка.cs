@@ -23,7 +23,7 @@ namespace Pharm.Database
         public int Код_поставки { get; set; }
         public int Код_поставщика { get; set; }
         public int Код_склада { get; set; }
-        public decimal Стоимость__ { get; set; }
+        public decimal Стоимость { get; set; }
     
         public virtual Поставщик Поставщик { get; set; }
         public virtual Склад Склад { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище АптекаModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище АптекаModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Адрес">
           <Key>
             <PropertyRef Name="Код адреса" />
@@ -30,17 +30,17 @@
           </Key>
           <Property Name="Код заказа" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Код сотрудника" Type="int" Nullable="false" />
-          <Property Name="Код социальной карты" Type="int" />
+          <Property Name="Код социальной карты" Type="nvarchar" MaxLength="19" />
           <Property Name="Дата и время исполнения" Type="datetime" Nullable="false" />
           <Property Name="Стоимость ₽" Type="money" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Заказ_Препарат">
           <Key>
-            <PropertyRef Name="Код заказа" />
-            <PropertyRef Name="Код препарата" />
+            <PropertyRef Name="Код заказа_препарата" />
           </Key>
-          <Property Name="Код заказа" Type="int" Nullable="false" />
-          <Property Name="Код препарата" Type="int" Nullable="false" />
+          <Property Name="Код заказа_препарата" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код заказа" Type="int" />
+          <Property Name="Код препарата" Type="int" />
           <Property Name="Количество препарата" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Изготовитель">
@@ -48,7 +48,6 @@
             <PropertyRef Name="Код изготовителя" />
           </Key>
           <Property Name="Код изготовителя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Код контактных данных" Type="int" Nullable="false" />
           <Property Name="Название" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Контактные данные">
@@ -58,8 +57,7 @@
           <Property Name="Код контактных данных" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Код адреса" Type="int" />
           <Property Name="Номер телефона" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Сайт" Type="nvarchar" MaxLength="64" />
-          <Property Name="Электронная почта" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Электронная почта" Type="nvarchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Личные данные">
           <Key>
@@ -71,13 +69,13 @@
           <Property Name="Отчество" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Серия паспорта" Type="int" />
           <Property Name="Номер паспорта" Type="int" />
-          <Property Name="Дата рождения" Type="date" Nullable="false" />
-          <Property Name="Образование" Type="nvarchar" MaxLength="128" />
+          <Property Name="Дата рождения" Type="date" />
         </EntityType>
         <EntityType Name="Пользователи">
           <Key>
-            <PropertyRef Name="Логин" />
+            <PropertyRef Name="Код пользователя" />
           </Key>
+          <Property Name="Код пользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Логин" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Пароль" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Роль" Type="nvarchar" MaxLength="30" Nullable="false" />
@@ -89,14 +87,13 @@
           <Property Name="Код поставки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Код поставщика" Type="int" Nullable="false" />
           <Property Name="Код склада" Type="int" Nullable="false" />
-          <Property Name="Стоимость ₽" Type="money" Nullable="false" />
+          <Property Name="Стоимость" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Поставщик">
           <Key>
             <PropertyRef Name="Код поставщика" />
           </Key>
           <Property Name="Код поставщика" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Код контактных данных" Type="int" Nullable="false" />
           <Property Name="Название" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Препарат">
@@ -109,12 +106,13 @@
           <Property Name="Группа" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Закупочная цена ₽" Type="money" Nullable="false" />
           <Property Name="Конечная цена ₽" Type="money" Nullable="false" />
+          <Property Name="Кол-во" Type="int" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Препарат_Поставка">
           <Key>
-            <PropertyRef Name="Код препарата" />
-            <PropertyRef Name="Код поставки" />
+            <PropertyRef Name="Код препарата_поставки" />
           </Key>
+          <Property Name="Код препарата_поставки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Код препарата" Type="int" Nullable="false" />
           <Property Name="Код поставки" Type="int" Nullable="false" />
           <Property Name="Количество препарата" Type="int" Nullable="false" />
@@ -123,7 +121,7 @@
           <Key>
             <PropertyRef Name="Код склада" />
           </Key>
-          <Property Name="Код склада" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код склада" Type="int" Nullable="false" />
           <Property Name="Площадь м2" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Сотрудник">
@@ -133,7 +131,7 @@
           <Property Name="Код сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Код должности" Type="int" Nullable="false" />
           <Property Name="Код контактных данных" Type="int" Nullable="false" />
-          <Property Name="Логин" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Код пользователя" Type="int" Nullable="false" />
           <Property Name="Код личных данных" Type="int" Nullable="false" />
           <Property Name="Дата приёма на работу" Type="date" Nullable="false" />
         </EntityType>
@@ -141,14 +139,12 @@
           <Key>
             <PropertyRef Name="Код социальной карты" />
           </Key>
-          <Property Name="Код социальной карты" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Фамилия" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Имя" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Отчество" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Код социальной карты" Type="nvarchar" MaxLength="19" Nullable="false" />
+          <Property Name="Код личных данных" Type="int" Nullable="false" />
           <Property Name="Срок действия" Type="date" Nullable="false" />
           <Property Name="Скидка" Type="numeric" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Заказ__Код сотру__48CFD27E">
+        <Association Name="FK__Заказ__Код сотру__47DBAE45">
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="1" />
           <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Заказ__Код социа__49C3F6B7">
+        <Association Name="FK__Заказ__Код социа__48CFD27E">
           <End Role="Социальная карта" Type="Self.Социальная карта" Multiplicity="0..1" />
           <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,8 +168,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Заказ_Пре__Код з__5535A963">
-          <End Role="Заказ" Type="Self.Заказ" Multiplicity="1" />
+        <Association Name="FK__Заказ_Пре__Код з__5441852A">
+          <End Role="Заказ" Type="Self.Заказ" Multiplicity="0..1" />
           <End Role="Заказ_Препарат" Type="Self.Заказ_Препарат" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Заказ">
@@ -184,8 +180,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Заказ_Пре__Код п__5629CD9C">
-          <End Role="Препарат" Type="Self.Препарат" Multiplicity="1" />
+        <Association Name="FK__Заказ_Пре__Код п__5535A963">
+          <End Role="Препарат" Type="Self.Препарат" Multiplicity="0..1" />
           <End Role="Заказ_Препарат" Type="Self.Заказ_Препарат" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Препарат">
@@ -196,19 +192,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Изготовит__Код к__35BCFE0A">
-          <End Role="Контактные данные" Type="Self.Контактные данные" Multiplicity="1" />
-          <End Role="Изготовитель" Type="Self.Изготовитель" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Контактные данные">
-              <PropertyRef Name="Код контактных данных" />
-            </Principal>
-            <Dependent Role="Изготовитель">
-              <PropertyRef Name="Код контактных данных" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Контактны__Код а__31EC6D26">
+        <Association Name="FK__Контактны__Код а__32E0915F">
           <End Role="Адрес" Type="Self.Адрес" Multiplicity="0..1" />
           <End Role="Контактные данные" Type="Self.Контактные данные" Multiplicity="*" />
           <ReferentialConstraint>
@@ -220,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Поставка__Код по__3E52440B">
+        <Association Name="FK__Поставка__Код по__3D5E1FD2">
           <End Role="Поставщик" Type="Self.Поставщик" Multiplicity="1" />
           <End Role="Поставка" Type="Self.Поставка" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,7 +216,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Поставка__Код ск__3F466844">
+        <Association Name="FK__Поставка__Код ск__3E52440B">
           <End Role="Склад" Type="Self.Склад" Multiplicity="1" />
           <End Role="Поставка" Type="Self.Поставка" Multiplicity="*" />
           <ReferentialConstraint>
@@ -244,19 +228,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Поставщик__Код к__38996AB5">
-          <End Role="Контактные данные" Type="Self.Контактные данные" Multiplicity="1" />
-          <End Role="Поставщик" Type="Self.Поставщик" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Контактные данные">
-              <PropertyRef Name="Код контактных данных" />
-            </Principal>
-            <Dependent Role="Поставщик">
-              <PropertyRef Name="Код контактных данных" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Препарат___Код п__5165187F">
+        <Association Name="FK__Препарат___Код п__5070F446">
           <End Role="Препарат" Type="Self.Препарат" Multiplicity="1" />
           <End Role="Препарат_Поставка" Type="Self.Препарат_Поставка" Multiplicity="*" />
           <ReferentialConstraint>
@@ -268,7 +240,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Препарат___Код п__52593CB8">
+        <Association Name="FK__Препарат___Код п__5165187F">
           <End Role="Поставка" Type="Self.Поставка" Multiplicity="1" />
           <End Role="Препарат_Поставка" Type="Self.Препарат_Поставка" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,7 +252,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Препарат__Код из__4CA06362">
+        <Association Name="FK__Препарат__Код из__4BAC3F29">
           <End Role="Изготовитель" Type="Self.Изготовитель" Multiplicity="1" />
           <End Role="Препарат" Type="Self.Препарат" Multiplicity="*" />
           <ReferentialConstraint>
@@ -292,7 +264,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Сотрудник__Код д__4316F928">
+        <Association Name="FK__Сотрудник__Код д__4222D4EF">
           <End Role="Должность" Type="Self.Должность" Multiplicity="1" />
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
           <ReferentialConstraint>
@@ -304,7 +276,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Сотрудник__Код к__440B1D61">
+        <Association Name="FK__Сотрудник__Код к__4316F928">
           <End Role="Контактные данные" Type="Self.Контактные данные" Multiplicity="1" />
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
           <ReferentialConstraint>
@@ -316,7 +288,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Сотрудник__Код л__45F365D3">
+        <Association Name="FK__Сотрудник__Код л__44FF419A">
           <End Role="Личные данные" Type="Self.Личные данные" Multiplicity="1" />
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
           <ReferentialConstraint>
@@ -328,15 +300,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Сотрудник__Логин__44FF419A">
+        <Association Name="FK__Сотрудник__Код п__440B1D61">
           <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Пользователи">
-              <PropertyRef Name="Логин" />
+              <PropertyRef Name="Код пользователя" />
             </Principal>
             <Dependent Role="Сотрудник">
-              <PropertyRef Name="Логин" />
+              <PropertyRef Name="Код пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Социальна__Код л__2D27B809">
+          <End Role="Личные данные" Type="Self.Личные данные" Multiplicity="1" />
+          <End Role="Социальная карта" Type="Self.Социальная карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Личные данные">
+              <PropertyRef Name="Код личных данных" />
+            </Principal>
+            <Dependent Role="Социальная карта">
+              <PropertyRef Name="Код личных данных" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -356,73 +340,68 @@
           <EntitySet Name="Склад" EntityType="Self.Склад" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Сотрудник" EntityType="Self.Сотрудник" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Социальная карта" EntityType="Self.Социальная карта" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Заказ__Код сотру__48CFD27E" Association="Self.FK__Заказ__Код сотру__48CFD27E">
+          <AssociationSet Name="FK__Заказ__Код сотру__47DBAE45" Association="Self.FK__Заказ__Код сотру__47DBAE45">
             <End Role="Сотрудник" EntitySet="Сотрудник" />
             <End Role="Заказ" EntitySet="Заказ" />
           </AssociationSet>
-          <AssociationSet Name="FK__Заказ__Код социа__49C3F6B7" Association="Self.FK__Заказ__Код социа__49C3F6B7">
+          <AssociationSet Name="FK__Заказ__Код социа__48CFD27E" Association="Self.FK__Заказ__Код социа__48CFD27E">
             <End Role="Социальная карта" EntitySet="Социальная карта" />
             <End Role="Заказ" EntitySet="Заказ" />
           </AssociationSet>
-          <AssociationSet Name="FK__Заказ_Пре__Код з__5535A963" Association="Self.FK__Заказ_Пре__Код з__5535A963">
+          <AssociationSet Name="FK__Заказ_Пре__Код з__5441852A" Association="Self.FK__Заказ_Пре__Код з__5441852A">
             <End Role="Заказ" EntitySet="Заказ" />
             <End Role="Заказ_Препарат" EntitySet="Заказ_Препарат" />
           </AssociationSet>
-          <AssociationSet Name="FK__Заказ_Пре__Код п__5629CD9C" Association="Self.FK__Заказ_Пре__Код п__5629CD9C">
+          <AssociationSet Name="FK__Заказ_Пре__Код п__5535A963" Association="Self.FK__Заказ_Пре__Код п__5535A963">
             <End Role="Препарат" EntitySet="Препарат" />
             <End Role="Заказ_Препарат" EntitySet="Заказ_Препарат" />
           </AssociationSet>
-          <AssociationSet Name="FK__Изготовит__Код к__35BCFE0A" Association="Self.FK__Изготовит__Код к__35BCFE0A">
-            <End Role="Контактные данные" EntitySet="Контактные данные" />
-            <End Role="Изготовитель" EntitySet="Изготовитель" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Контактны__Код а__31EC6D26" Association="Self.FK__Контактны__Код а__31EC6D26">
+          <AssociationSet Name="FK__Контактны__Код а__32E0915F" Association="Self.FK__Контактны__Код а__32E0915F">
             <End Role="Адрес" EntitySet="Адрес" />
             <End Role="Контактные данные" EntitySet="Контактные данные" />
           </AssociationSet>
-          <AssociationSet Name="FK__Поставка__Код по__3E52440B" Association="Self.FK__Поставка__Код по__3E52440B">
+          <AssociationSet Name="FK__Поставка__Код по__3D5E1FD2" Association="Self.FK__Поставка__Код по__3D5E1FD2">
             <End Role="Поставщик" EntitySet="Поставщик" />
             <End Role="Поставка" EntitySet="Поставка" />
           </AssociationSet>
-          <AssociationSet Name="FK__Поставка__Код ск__3F466844" Association="Self.FK__Поставка__Код ск__3F466844">
+          <AssociationSet Name="FK__Поставка__Код ск__3E52440B" Association="Self.FK__Поставка__Код ск__3E52440B">
             <End Role="Склад" EntitySet="Склад" />
             <End Role="Поставка" EntitySet="Поставка" />
           </AssociationSet>
-          <AssociationSet Name="FK__Поставщик__Код к__38996AB5" Association="Self.FK__Поставщик__Код к__38996AB5">
-            <End Role="Контактные данные" EntitySet="Контактные данные" />
-            <End Role="Поставщик" EntitySet="Поставщик" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Препарат___Код п__5165187F" Association="Self.FK__Препарат___Код п__5165187F">
+          <AssociationSet Name="FK__Препарат___Код п__5070F446" Association="Self.FK__Препарат___Код п__5070F446">
             <End Role="Препарат" EntitySet="Препарат" />
             <End Role="Препарат_Поставка" EntitySet="Препарат_Поставка" />
           </AssociationSet>
-          <AssociationSet Name="FK__Препарат___Код п__52593CB8" Association="Self.FK__Препарат___Код п__52593CB8">
+          <AssociationSet Name="FK__Препарат___Код п__5165187F" Association="Self.FK__Препарат___Код п__5165187F">
             <End Role="Поставка" EntitySet="Поставка" />
             <End Role="Препарат_Поставка" EntitySet="Препарат_Поставка" />
           </AssociationSet>
-          <AssociationSet Name="FK__Препарат__Код из__4CA06362" Association="Self.FK__Препарат__Код из__4CA06362">
+          <AssociationSet Name="FK__Препарат__Код из__4BAC3F29" Association="Self.FK__Препарат__Код из__4BAC3F29">
             <End Role="Изготовитель" EntitySet="Изготовитель" />
             <End Role="Препарат" EntitySet="Препарат" />
           </AssociationSet>
-          <AssociationSet Name="FK__Сотрудник__Код д__4316F928" Association="Self.FK__Сотрудник__Код д__4316F928">
+          <AssociationSet Name="FK__Сотрудник__Код д__4222D4EF" Association="Self.FK__Сотрудник__Код д__4222D4EF">
             <End Role="Должность" EntitySet="Должность" />
             <End Role="Сотрудник" EntitySet="Сотрудник" />
           </AssociationSet>
-          <AssociationSet Name="FK__Сотрудник__Код к__440B1D61" Association="Self.FK__Сотрудник__Код к__440B1D61">
+          <AssociationSet Name="FK__Сотрудник__Код к__4316F928" Association="Self.FK__Сотрудник__Код к__4316F928">
             <End Role="Контактные данные" EntitySet="Контактные данные" />
             <End Role="Сотрудник" EntitySet="Сотрудник" />
           </AssociationSet>
-          <AssociationSet Name="FK__Сотрудник__Код л__45F365D3" Association="Self.FK__Сотрудник__Код л__45F365D3">
+          <AssociationSet Name="FK__Сотрудник__Код л__44FF419A" Association="Self.FK__Сотрудник__Код л__44FF419A">
             <End Role="Личные данные" EntitySet="Личные данные" />
             <End Role="Сотрудник" EntitySet="Сотрудник" />
           </AssociationSet>
-          <AssociationSet Name="FK__Сотрудник__Логин__44FF419A" Association="Self.FK__Сотрудник__Логин__44FF419A">
+          <AssociationSet Name="FK__Сотрудник__Код п__440B1D61" Association="Self.FK__Сотрудник__Код п__440B1D61">
             <End Role="Пользователи" EntitySet="Пользователи" />
             <End Role="Сотрудник" EntitySet="Сотрудник" />
           </AssociationSet>
+          <AssociationSet Name="FK__Социальна__Код л__2D27B809" Association="Self.FK__Социальна__Код л__2D27B809">
+            <End Role="Личные данные" EntitySet="Личные данные" />
+            <End Role="Социальная карта" EntitySet="Социальная карта" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="АптекаModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -436,7 +415,7 @@
           <Property Name="Улица" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Дом" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Квартира" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Контактные_данные" Relationship="Self.FK__Контактны__Код_а__31EC6D26" FromRole="Адрес" ToRole="Контактные_данные" />
+          <NavigationProperty Name="Контактные_данные" Relationship="Self.FK__Контактны__Код_а__32E0915F" FromRole="Адрес" ToRole="Контактные_данные" />
         </EntityType>
         <EntityType Name="Должность">
           <Key>
@@ -445,7 +424,7 @@
           <Property Name="Код_должности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Название_должности" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Оклад__" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Код_д__4316F928" FromRole="Должность" ToRole="Сотрудник" />
+          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Код_д__4222D4EF" FromRole="Должность" ToRole="Сотрудник" />
         </EntityType>
         <EntityType Name="Заказ">
           <Key>
@@ -453,33 +432,31 @@
           </Key>
           <Property Name="Код_заказа" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Код_сотрудника" Type="Int32" Nullable="false" />
-          <Property Name="Код_социальной_карты" Type="Int32" />
+          <Property Name="Код_социальной_карты" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
           <Property Name="Дата_и_время_исполнения" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Стоимость__" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Заказ__Код_сотру__48CFD27E" FromRole="Заказ" ToRole="Сотрудник" />
-          <NavigationProperty Name="Социальная_карта" Relationship="Self.FK__Заказ__Код_социа__49C3F6B7" FromRole="Заказ" ToRole="Социальная_карта" />
-          <NavigationProperty Name="Заказ_Препарат" Relationship="Self.FK__Заказ_Пре__Код_з__5535A963" FromRole="Заказ" ToRole="Заказ_Препарат" />
+          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Заказ__Код_сотру__47DBAE45" FromRole="Заказ" ToRole="Сотрудник" />
+          <NavigationProperty Name="Социальная_карта" Relationship="Self.FK__Заказ__Код_социа__48CFD27E" FromRole="Заказ" ToRole="Социальная_карта" />
+          <NavigationProperty Name="Заказ_Препарат" Relationship="Self.FK__Заказ_Пре__Код_з__5441852A" FromRole="Заказ" ToRole="Заказ_Препарат" />
         </EntityType>
         <EntityType Name="Заказ_Препарат">
           <Key>
-            <PropertyRef Name="Код_заказа" />
-            <PropertyRef Name="Код_препарата" />
+            <PropertyRef Name="Код_заказа_препарата" />
           </Key>
-          <Property Name="Код_заказа" Type="Int32" Nullable="false" />
-          <Property Name="Код_препарата" Type="Int32" Nullable="false" />
+          <Property Name="Код_заказа_препарата" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_заказа" Type="Int32" />
+          <Property Name="Код_препарата" Type="Int32" />
           <Property Name="Количество_препарата" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Заказ" Relationship="Self.FK__Заказ_Пре__Код_з__5535A963" FromRole="Заказ_Препарат" ToRole="Заказ" />
-          <NavigationProperty Name="Препарат" Relationship="Self.FK__Заказ_Пре__Код_п__5629CD9C" FromRole="Заказ_Препарат" ToRole="Препарат" />
+          <NavigationProperty Name="Заказ" Relationship="Self.FK__Заказ_Пре__Код_з__5441852A" FromRole="Заказ_Препарат" ToRole="Заказ" />
+          <NavigationProperty Name="Препарат" Relationship="Self.FK__Заказ_Пре__Код_п__5535A963" FromRole="Заказ_Препарат" ToRole="Препарат" />
         </EntityType>
         <EntityType Name="Изготовитель">
           <Key>
             <PropertyRef Name="Код_изготовителя" />
           </Key>
           <Property Name="Код_изготовителя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Код_контактных_данных" Type="Int32" Nullable="false" />
           <Property Name="Название" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Контактные_данные" Relationship="Self.FK__Изготовит__Код_к__35BCFE0A" FromRole="Изготовитель" ToRole="Контактные_данные" />
-          <NavigationProperty Name="Препарат" Relationship="Self.FK__Препарат__Код_из__4CA06362" FromRole="Изготовитель" ToRole="Препарат" />
+          <NavigationProperty Name="Препарат" Relationship="Self.FK__Препарат__Код_из__4BAC3F29" FromRole="Изготовитель" ToRole="Препарат" />
         </EntityType>
         <EntityType Name="Контактные_данные">
           <Key>
@@ -488,12 +465,9 @@
           <Property Name="Код_контактных_данных" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Код_адреса" Type="Int32" />
           <Property Name="Номер_телефона" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Сайт" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Электронная_почта" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Адрес" Relationship="Self.FK__Контактны__Код_а__31EC6D26" FromRole="Контактные_данные" ToRole="Адрес" />
-          <NavigationProperty Name="Изготовитель" Relationship="Self.FK__Изготовит__Код_к__35BCFE0A" FromRole="Контактные_данные" ToRole="Изготовитель" />
-          <NavigationProperty Name="Поставщик" Relationship="Self.FK__Поставщик__Код_к__38996AB5" FromRole="Контактные_данные" ToRole="Поставщик" />
-          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Код_к__440B1D61" FromRole="Контактные_данные" ToRole="Сотрудник" />
+          <Property Name="Электронная_почта" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Адрес" Relationship="Self.FK__Контактны__Код_а__32E0915F" FromRole="Контактные_данные" ToRole="Адрес" />
+          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Код_к__4316F928" FromRole="Контактные_данные" ToRole="Сотрудник" />
         </EntityType>
         <EntityType Name="Личные_данные">
           <Key>
@@ -505,18 +479,19 @@
           <Property Name="Отчество" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Серия_паспорта" Type="Int32" />
           <Property Name="Номер_паспорта" Type="Int32" />
-          <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Образование" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Код_л__45F365D3" FromRole="Личные_данные" ToRole="Сотрудник" />
+          <Property Name="Дата_рождения" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Код_л__44FF419A" FromRole="Личные_данные" ToRole="Сотрудник" />
+          <NavigationProperty Name="Социальная_карта" Relationship="Self.FK__Социальна__Код_л__2D27B809" FromRole="Личные_данные" ToRole="Социальная_карта" />
         </EntityType>
         <EntityType Name="Пользователи">
           <Key>
-            <PropertyRef Name="Логин" />
+            <PropertyRef Name="Код_пользователя" />
           </Key>
+          <Property Name="Код_пользователя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Логин" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Пароль" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Роль" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Логин__44FF419A" FromRole="Пользователи" ToRole="Сотрудник" />
+          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Код_п__440B1D61" FromRole="Пользователи" ToRole="Сотрудник" />
         </EntityType>
         <EntityType Name="Поставка">
           <Key>
@@ -525,20 +500,18 @@
           <Property Name="Код_поставки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Код_поставщика" Type="Int32" Nullable="false" />
           <Property Name="Код_склада" Type="Int32" Nullable="false" />
-          <Property Name="Стоимость__" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Поставщик" Relationship="Self.FK__Поставка__Код_по__3E52440B" FromRole="Поставка" ToRole="Поставщик" />
-          <NavigationProperty Name="Склад" Relationship="Self.FK__Поставка__Код_ск__3F466844" FromRole="Поставка" ToRole="Склад" />
-          <NavigationProperty Name="Препарат_Поставка" Relationship="Self.FK__Препарат___Код_п__52593CB8" FromRole="Поставка" ToRole="Препарат_Поставка" />
+          <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Поставщик" Relationship="Self.FK__Поставка__Код_по__3D5E1FD2" FromRole="Поставка" ToRole="Поставщик" />
+          <NavigationProperty Name="Склад" Relationship="Self.FK__Поставка__Код_ск__3E52440B" FromRole="Поставка" ToRole="Склад" />
+          <NavigationProperty Name="Препарат_Поставка" Relationship="Self.FK__Препарат___Код_п__5165187F" FromRole="Поставка" ToRole="Препарат_Поставка" />
         </EntityType>
         <EntityType Name="Поставщик">
           <Key>
             <PropertyRef Name="Код_поставщика" />
           </Key>
           <Property Name="Код_поставщика" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Код_контактных_данных" Type="Int32" Nullable="false" />
           <Property Name="Название" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Контактные_данные" Relationship="Self.FK__Поставщик__Код_к__38996AB5" FromRole="Поставщик" ToRole="Контактные_данные" />
-          <NavigationProperty Name="Поставка" Relationship="Self.FK__Поставка__Код_по__3E52440B" FromRole="Поставщик" ToRole="Поставка" />
+          <NavigationProperty Name="Поставка" Relationship="Self.FK__Поставка__Код_по__3D5E1FD2" FromRole="Поставщик" ToRole="Поставка" />
         </EntityType>
         <EntityType Name="Препарат">
           <Key>
@@ -550,28 +523,29 @@
           <Property Name="Группа" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Закупочная_цена__" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Конечная_цена__" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Заказ_Препарат" Relationship="Self.FK__Заказ_Пре__Код_п__5629CD9C" FromRole="Препарат" ToRole="Заказ_Препарат" />
-          <NavigationProperty Name="Изготовитель" Relationship="Self.FK__Препарат__Код_из__4CA06362" FromRole="Препарат" ToRole="Изготовитель" />
-          <NavigationProperty Name="Препарат_Поставка" Relationship="Self.FK__Препарат___Код_п__5165187F" FromRole="Препарат" ToRole="Препарат_Поставка" />
+          <NavigationProperty Name="Заказ_Препарат" Relationship="Self.FK__Заказ_Пре__Код_п__5535A963" FromRole="Препарат" ToRole="Заказ_Препарат" />
+          <NavigationProperty Name="Изготовитель" Relationship="Self.FK__Препарат__Код_из__4BAC3F29" FromRole="Препарат" ToRole="Изготовитель" />
+          <NavigationProperty Name="Препарат_Поставка" Relationship="Self.FK__Препарат___Код_п__5070F446" FromRole="Препарат" ToRole="Препарат_Поставка" />
+          <Property Name="Кол_во" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Препарат_Поставка">
           <Key>
-            <PropertyRef Name="Код_препарата" />
-            <PropertyRef Name="Код_поставки" />
+            <PropertyRef Name="Код_препарата_поставки" />
           </Key>
+          <Property Name="Код_препарата_поставки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Код_препарата" Type="Int32" Nullable="false" />
           <Property Name="Код_поставки" Type="Int32" Nullable="false" />
           <Property Name="Количество_препарата" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Поставка" Relationship="Self.FK__Препарат___Код_п__52593CB8" FromRole="Препарат_Поставка" ToRole="Поставка" />
-          <NavigationProperty Name="Препарат" Relationship="Self.FK__Препарат___Код_п__5165187F" FromRole="Препарат_Поставка" ToRole="Препарат" />
+          <NavigationProperty Name="Поставка" Relationship="Self.FK__Препарат___Код_п__5165187F" FromRole="Препарат_Поставка" ToRole="Поставка" />
+          <NavigationProperty Name="Препарат" Relationship="Self.FK__Препарат___Код_п__5070F446" FromRole="Препарат_Поставка" ToRole="Препарат" />
         </EntityType>
         <EntityType Name="Склад">
           <Key>
             <PropertyRef Name="Код_склада" />
           </Key>
-          <Property Name="Код_склада" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_склада" Type="Int32" Nullable="false" />
           <Property Name="Площадь_м2" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Поставка" Relationship="Self.FK__Поставка__Код_ск__3F466844" FromRole="Склад" ToRole="Поставка" />
+          <NavigationProperty Name="Поставка" Relationship="Self.FK__Поставка__Код_ск__3E52440B" FromRole="Склад" ToRole="Поставка" />
         </EntityType>
         <EntityType Name="Сотрудник">
           <Key>
@@ -580,28 +554,27 @@
           <Property Name="Код_сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Код_должности" Type="Int32" Nullable="false" />
           <Property Name="Код_контактных_данных" Type="Int32" Nullable="false" />
-          <Property Name="Логин" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Код_пользователя" Type="Int32" Nullable="false" />
           <Property Name="Код_личных_данных" Type="Int32" Nullable="false" />
           <Property Name="Дата_приёма_на_работу" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Должность" Relationship="Self.FK__Сотрудник__Код_д__4316F928" FromRole="Сотрудник" ToRole="Должность" />
-          <NavigationProperty Name="Заказ" Relationship="Self.FK__Заказ__Код_сотру__48CFD27E" FromRole="Сотрудник" ToRole="Заказ" />
-          <NavigationProperty Name="Контактные_данные" Relationship="Self.FK__Сотрудник__Код_к__440B1D61" FromRole="Сотрудник" ToRole="Контактные_данные" />
-          <NavigationProperty Name="Личные_данные" Relationship="Self.FK__Сотрудник__Код_л__45F365D3" FromRole="Сотрудник" ToRole="Личные_данные" />
-          <NavigationProperty Name="Пользователи" Relationship="Self.FK__Сотрудник__Логин__44FF419A" FromRole="Сотрудник" ToRole="Пользователи" />
+          <NavigationProperty Name="Должность" Relationship="Self.FK__Сотрудник__Код_д__4222D4EF" FromRole="Сотрудник" ToRole="Должность" />
+          <NavigationProperty Name="Заказ" Relationship="Self.FK__Заказ__Код_сотру__47DBAE45" FromRole="Сотрудник" ToRole="Заказ" />
+          <NavigationProperty Name="Контактные_данные" Relationship="Self.FK__Сотрудник__Код_к__4316F928" FromRole="Сотрудник" ToRole="Контактные_данные" />
+          <NavigationProperty Name="Личные_данные" Relationship="Self.FK__Сотрудник__Код_л__44FF419A" FromRole="Сотрудник" ToRole="Личные_данные" />
+          <NavigationProperty Name="Пользователи" Relationship="Self.FK__Сотрудник__Код_п__440B1D61" FromRole="Сотрудник" ToRole="Пользователи" />
         </EntityType>
         <EntityType Name="Социальная_карта">
           <Key>
             <PropertyRef Name="Код_социальной_карты" />
           </Key>
-          <Property Name="Код_социальной_карты" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Фамилия" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Имя" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Отчество" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Код_социальной_карты" Type="String" MaxLength="19" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Код_личных_данных" Type="Int32" Nullable="false" />
           <Property Name="Срок_действия" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Скидка" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Заказ" Relationship="Self.FK__Заказ__Код_социа__49C3F6B7" FromRole="Социальная_карта" ToRole="Заказ" />
+          <NavigationProperty Name="Заказ" Relationship="Self.FK__Заказ__Код_социа__48CFD27E" FromRole="Социальная_карта" ToRole="Заказ" />
+          <NavigationProperty Name="Личные_данные" Relationship="Self.FK__Социальна__Код_л__2D27B809" FromRole="Социальная_карта" ToRole="Личные_данные" />
         </EntityType>
-        <Association Name="FK__Контактны__Код_а__31EC6D26">
+        <Association Name="FK__Контактны__Код_а__32E0915F">
           <End Role="Адрес" Type="Self.Адрес" Multiplicity="0..1" />
           <End Role="Контактные_данные" Type="Self.Контактные_данные" Multiplicity="*" />
           <ReferentialConstraint>
@@ -613,7 +586,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Сотрудник__Код_д__4316F928">
+        <Association Name="FK__Сотрудник__Код_д__4222D4EF">
           <End Role="Должность" Type="Self.Должность" Multiplicity="1" />
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
           <ReferentialConstraint>
@@ -625,7 +598,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Заказ__Код_сотру__48CFD27E">
+        <Association Name="FK__Заказ__Код_сотру__47DBAE45">
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="1" />
           <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
           <ReferentialConstraint>
@@ -637,7 +610,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Заказ__Код_социа__49C3F6B7">
+        <Association Name="FK__Заказ__Код_социа__48CFD27E">
           <End Role="Социальная_карта" Type="Self.Социальная_карта" Multiplicity="0..1" />
           <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
           <ReferentialConstraint>
@@ -649,8 +622,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Заказ_Пре__Код_з__5535A963">
-          <End Role="Заказ" Type="Self.Заказ" Multiplicity="1" />
+        <Association Name="FK__Заказ_Пре__Код_з__5441852A">
+          <End Role="Заказ" Type="Self.Заказ" Multiplicity="0..1" />
           <End Role="Заказ_Препарат" Type="Self.Заказ_Препарат" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Заказ">
@@ -661,8 +634,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Заказ_Пре__Код_п__5629CD9C">
-          <End Role="Препарат" Type="Self.Препарат" Multiplicity="1" />
+        <Association Name="FK__Заказ_Пре__Код_п__5535A963">
+          <End Role="Препарат" Type="Self.Препарат" Multiplicity="0..1" />
           <End Role="Заказ_Препарат" Type="Self.Заказ_Препарат" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Препарат">
@@ -673,19 +646,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Изготовит__Код_к__35BCFE0A">
-          <End Role="Контактные_данные" Type="Self.Контактные_данные" Multiplicity="1" />
-          <End Role="Изготовитель" Type="Self.Изготовитель" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Контактные_данные">
-              <PropertyRef Name="Код_контактных_данных" />
-            </Principal>
-            <Dependent Role="Изготовитель">
-              <PropertyRef Name="Код_контактных_данных" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Препарат__Код_из__4CA06362">
+        <Association Name="FK__Препарат__Код_из__4BAC3F29">
           <End Role="Изготовитель" Type="Self.Изготовитель" Multiplicity="1" />
           <End Role="Препарат" Type="Self.Препарат" Multiplicity="*" />
           <ReferentialConstraint>
@@ -697,19 +658,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Поставщик__Код_к__38996AB5">
-          <End Role="Контактные_данные" Type="Self.Контактные_данные" Multiplicity="1" />
-          <End Role="Поставщик" Type="Self.Поставщик" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Контактные_данные">
-              <PropertyRef Name="Код_контактных_данных" />
-            </Principal>
-            <Dependent Role="Поставщик">
-              <PropertyRef Name="Код_контактных_данных" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Сотрудник__Код_к__440B1D61">
+        <Association Name="FK__Сотрудник__Код_к__4316F928">
           <End Role="Контактные_данные" Type="Self.Контактные_данные" Multiplicity="1" />
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
           <ReferentialConstraint>
@@ -721,7 +670,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Сотрудник__Код_л__45F365D3">
+        <Association Name="FK__Сотрудник__Код_л__44FF419A">
           <End Role="Личные_данные" Type="Self.Личные_данные" Multiplicity="1" />
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
           <ReferentialConstraint>
@@ -733,19 +682,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Сотрудник__Логин__44FF419A">
+        <Association Name="FK__Социальна__Код_л__2D27B809">
+          <End Role="Личные_данные" Type="Self.Личные_данные" Multiplicity="1" />
+          <End Role="Социальная_карта" Type="Self.Социальная_карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Личные_данные">
+              <PropertyRef Name="Код_личных_данных" />
+            </Principal>
+            <Dependent Role="Социальная_карта">
+              <PropertyRef Name="Код_личных_данных" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сотрудник__Код_п__440B1D61">
           <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
           <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Пользователи">
-              <PropertyRef Name="Логин" />
+              <PropertyRef Name="Код_пользователя" />
             </Principal>
             <Dependent Role="Сотрудник">
-              <PropertyRef Name="Логин" />
+              <PropertyRef Name="Код_пользователя" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Поставка__Код_по__3E52440B">
+        <Association Name="FK__Поставка__Код_по__3D5E1FD2">
           <End Role="Поставщик" Type="Self.Поставщик" Multiplicity="1" />
           <End Role="Поставка" Type="Self.Поставка" Multiplicity="*" />
           <ReferentialConstraint>
@@ -757,7 +718,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Поставка__Код_ск__3F466844">
+        <Association Name="FK__Поставка__Код_ск__3E52440B">
           <End Role="Склад" Type="Self.Склад" Multiplicity="1" />
           <End Role="Поставка" Type="Self.Поставка" Multiplicity="*" />
           <ReferentialConstraint>
@@ -769,7 +730,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Препарат___Код_п__52593CB8">
+        <Association Name="FK__Препарат___Код_п__5165187F">
           <End Role="Поставка" Type="Self.Поставка" Multiplicity="1" />
           <End Role="Препарат_Поставка" Type="Self.Препарат_Поставка" Multiplicity="*" />
           <ReferentialConstraint>
@@ -781,7 +742,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Препарат___Код_п__5165187F">
+        <Association Name="FK__Препарат___Код_п__5070F446">
           <End Role="Препарат" Type="Self.Препарат" Multiplicity="1" />
           <End Role="Препарат_Поставка" Type="Self.Препарат_Поставка" Multiplicity="*" />
           <ReferentialConstraint>
@@ -809,67 +770,63 @@
           <EntitySet Name="Склад" EntityType="Self.Склад" />
           <EntitySet Name="Сотрудник" EntityType="Self.Сотрудник" />
           <EntitySet Name="Социальная_карта" EntityType="Self.Социальная_карта" />
-          <AssociationSet Name="FK__Контактны__Код_а__31EC6D26" Association="Self.FK__Контактны__Код_а__31EC6D26">
+          <AssociationSet Name="FK__Контактны__Код_а__32E0915F" Association="Self.FK__Контактны__Код_а__32E0915F">
             <End Role="Адрес" EntitySet="Адрес" />
             <End Role="Контактные_данные" EntitySet="Контактные_данные" />
           </AssociationSet>
-          <AssociationSet Name="FK__Сотрудник__Код_д__4316F928" Association="Self.FK__Сотрудник__Код_д__4316F928">
+          <AssociationSet Name="FK__Сотрудник__Код_д__4222D4EF" Association="Self.FK__Сотрудник__Код_д__4222D4EF">
             <End Role="Должность" EntitySet="Должность" />
             <End Role="Сотрудник" EntitySet="Сотрудник" />
           </AssociationSet>
-          <AssociationSet Name="FK__Заказ__Код_сотру__48CFD27E" Association="Self.FK__Заказ__Код_сотру__48CFD27E">
+          <AssociationSet Name="FK__Заказ__Код_сотру__47DBAE45" Association="Self.FK__Заказ__Код_сотру__47DBAE45">
             <End Role="Сотрудник" EntitySet="Сотрудник" />
             <End Role="Заказ" EntitySet="Заказ" />
           </AssociationSet>
-          <AssociationSet Name="FK__Заказ__Код_социа__49C3F6B7" Association="Self.FK__Заказ__Код_социа__49C3F6B7">
+          <AssociationSet Name="FK__Заказ__Код_социа__48CFD27E" Association="Self.FK__Заказ__Код_социа__48CFD27E">
             <End Role="Социальная_карта" EntitySet="Социальная_карта" />
             <End Role="Заказ" EntitySet="Заказ" />
           </AssociationSet>
-          <AssociationSet Name="FK__Заказ_Пре__Код_з__5535A963" Association="Self.FK__Заказ_Пре__Код_з__5535A963">
+          <AssociationSet Name="FK__Заказ_Пре__Код_з__5441852A" Association="Self.FK__Заказ_Пре__Код_з__5441852A">
             <End Role="Заказ" EntitySet="Заказ" />
             <End Role="Заказ_Препарат" EntitySet="Заказ_Препарат" />
           </AssociationSet>
-          <AssociationSet Name="FK__Заказ_Пре__Код_п__5629CD9C" Association="Self.FK__Заказ_Пре__Код_п__5629CD9C">
+          <AssociationSet Name="FK__Заказ_Пре__Код_п__5535A963" Association="Self.FK__Заказ_Пре__Код_п__5535A963">
             <End Role="Препарат" EntitySet="Препарат" />
             <End Role="Заказ_Препарат" EntitySet="Заказ_Препарат" />
           </AssociationSet>
-          <AssociationSet Name="FK__Изготовит__Код_к__35BCFE0A" Association="Self.FK__Изготовит__Код_к__35BCFE0A">
-            <End Role="Контактные_данные" EntitySet="Контактные_данные" />
-            <End Role="Изготовитель" EntitySet="Изготовитель" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Препарат__Код_из__4CA06362" Association="Self.FK__Препарат__Код_из__4CA06362">
+          <AssociationSet Name="FK__Препарат__Код_из__4BAC3F29" Association="Self.FK__Препарат__Код_из__4BAC3F29">
             <End Role="Изготовитель" EntitySet="Изготовитель" />
             <End Role="Препарат" EntitySet="Препарат" />
           </AssociationSet>
-          <AssociationSet Name="FK__Поставщик__Код_к__38996AB5" Association="Self.FK__Поставщик__Код_к__38996AB5">
-            <End Role="Контактные_данные" EntitySet="Контактные_данные" />
-            <End Role="Поставщик" EntitySet="Поставщик" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Сотрудник__Код_к__440B1D61" Association="Self.FK__Сотрудник__Код_к__440B1D61">
+          <AssociationSet Name="FK__Сотрудник__Код_к__4316F928" Association="Self.FK__Сотрудник__Код_к__4316F928">
             <End Role="Контактные_данные" EntitySet="Контактные_данные" />
             <End Role="Сотрудник" EntitySet="Сотрудник" />
           </AssociationSet>
-          <AssociationSet Name="FK__Сотрудник__Код_л__45F365D3" Association="Self.FK__Сотрудник__Код_л__45F365D3">
+          <AssociationSet Name="FK__Сотрудник__Код_л__44FF419A" Association="Self.FK__Сотрудник__Код_л__44FF419A">
             <End Role="Личные_данные" EntitySet="Личные_данные" />
             <End Role="Сотрудник" EntitySet="Сотрудник" />
           </AssociationSet>
-          <AssociationSet Name="FK__Сотрудник__Логин__44FF419A" Association="Self.FK__Сотрудник__Логин__44FF419A">
+          <AssociationSet Name="FK__Социальна__Код_л__2D27B809" Association="Self.FK__Социальна__Код_л__2D27B809">
+            <End Role="Личные_данные" EntitySet="Личные_данные" />
+            <End Role="Социальная_карта" EntitySet="Социальная_карта" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сотрудник__Код_п__440B1D61" Association="Self.FK__Сотрудник__Код_п__440B1D61">
             <End Role="Пользователи" EntitySet="Пользователи" />
             <End Role="Сотрудник" EntitySet="Сотрудник" />
           </AssociationSet>
-          <AssociationSet Name="FK__Поставка__Код_по__3E52440B" Association="Self.FK__Поставка__Код_по__3E52440B">
+          <AssociationSet Name="FK__Поставка__Код_по__3D5E1FD2" Association="Self.FK__Поставка__Код_по__3D5E1FD2">
             <End Role="Поставщик" EntitySet="Поставщик" />
             <End Role="Поставка" EntitySet="Поставка" />
           </AssociationSet>
-          <AssociationSet Name="FK__Поставка__Код_ск__3F466844" Association="Self.FK__Поставка__Код_ск__3F466844">
+          <AssociationSet Name="FK__Поставка__Код_ск__3E52440B" Association="Self.FK__Поставка__Код_ск__3E52440B">
             <End Role="Склад" EntitySet="Склад" />
             <End Role="Поставка" EntitySet="Поставка" />
           </AssociationSet>
-          <AssociationSet Name="FK__Препарат___Код_п__52593CB8" Association="Self.FK__Препарат___Код_п__52593CB8">
+          <AssociationSet Name="FK__Препарат___Код_п__5165187F" Association="Self.FK__Препарат___Код_п__5165187F">
             <End Role="Поставка" EntitySet="Поставка" />
             <End Role="Препарат_Поставка" EntitySet="Препарат_Поставка" />
           </AssociationSet>
-          <AssociationSet Name="FK__Препарат___Код_п__5165187F" Association="Self.FK__Препарат___Код_п__5165187F">
+          <AssociationSet Name="FK__Препарат___Код_п__5070F446" Association="Self.FK__Препарат___Код_п__5070F446">
             <End Role="Препарат" EntitySet="Препарат" />
             <End Role="Препарат_Поставка" EntitySet="Препарат_Поставка" />
           </AssociationSet>
@@ -915,6 +872,7 @@
           <EntitySetMapping Name="Заказ_Препарат">
             <EntityTypeMapping TypeName="АптекаModel.Заказ_Препарат">
               <MappingFragment StoreEntitySet="Заказ_Препарат">
+                <ScalarProperty Name="Код_заказа_препарата" ColumnName="Код заказа_препарата" />
                 <ScalarProperty Name="Код_заказа" ColumnName="Код заказа" />
                 <ScalarProperty Name="Код_препарата" ColumnName="Код препарата" />
                 <ScalarProperty Name="Количество_препарата" ColumnName="Количество препарата" />
@@ -925,7 +883,6 @@
             <EntityTypeMapping TypeName="АптекаModel.Изготовитель">
               <MappingFragment StoreEntitySet="Изготовитель">
                 <ScalarProperty Name="Код_изготовителя" ColumnName="Код изготовителя" />
-                <ScalarProperty Name="Код_контактных_данных" ColumnName="Код контактных данных" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -936,7 +893,6 @@
                 <ScalarProperty Name="Код_контактных_данных" ColumnName="Код контактных данных" />
                 <ScalarProperty Name="Код_адреса" ColumnName="Код адреса" />
                 <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
-                <ScalarProperty Name="Сайт" ColumnName="Сайт" />
                 <ScalarProperty Name="Электронная_почта" ColumnName="Электронная почта" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -951,13 +907,13 @@
                 <ScalarProperty Name="Серия_паспорта" ColumnName="Серия паспорта" />
                 <ScalarProperty Name="Номер_паспорта" ColumnName="Номер паспорта" />
                 <ScalarProperty Name="Дата_рождения" ColumnName="Дата рождения" />
-                <ScalarProperty Name="Образование" ColumnName="Образование" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Пользователи">
             <EntityTypeMapping TypeName="АптекаModel.Пользователи">
               <MappingFragment StoreEntitySet="Пользователи">
+                <ScalarProperty Name="Код_пользователя" ColumnName="Код пользователя" />
                 <ScalarProperty Name="Логин" ColumnName="Логин" />
                 <ScalarProperty Name="Пароль" ColumnName="Пароль" />
                 <ScalarProperty Name="Роль" ColumnName="Роль" />
@@ -970,7 +926,7 @@
                 <ScalarProperty Name="Код_поставки" ColumnName="Код поставки" />
                 <ScalarProperty Name="Код_поставщика" ColumnName="Код поставщика" />
                 <ScalarProperty Name="Код_склада" ColumnName="Код склада" />
-                <ScalarProperty Name="Стоимость__" ColumnName="Стоимость ₽" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -978,7 +934,6 @@
             <EntityTypeMapping TypeName="АптекаModel.Поставщик">
               <MappingFragment StoreEntitySet="Поставщик">
                 <ScalarProperty Name="Код_поставщика" ColumnName="Код поставщика" />
-                <ScalarProperty Name="Код_контактных_данных" ColumnName="Код контактных данных" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -986,6 +941,7 @@
           <EntitySetMapping Name="Препарат">
             <EntityTypeMapping TypeName="АптекаModel.Препарат">
               <MappingFragment StoreEntitySet="Препарат">
+                <ScalarProperty Name="Кол_во" ColumnName="Кол-во" />
                 <ScalarProperty Name="Код_препарата" ColumnName="Код препарата" />
                 <ScalarProperty Name="Код_изготовителя" ColumnName="Код изготовителя" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
@@ -998,6 +954,7 @@
           <EntitySetMapping Name="Препарат_Поставка">
             <EntityTypeMapping TypeName="АптекаModel.Препарат_Поставка">
               <MappingFragment StoreEntitySet="Препарат_Поставка">
+                <ScalarProperty Name="Код_препарата_поставки" ColumnName="Код препарата_поставки" />
                 <ScalarProperty Name="Код_препарата" ColumnName="Код препарата" />
                 <ScalarProperty Name="Код_поставки" ColumnName="Код поставки" />
                 <ScalarProperty Name="Количество_препарата" ColumnName="Количество препарата" />
@@ -1018,7 +975,7 @@
                 <ScalarProperty Name="Код_сотрудника" ColumnName="Код сотрудника" />
                 <ScalarProperty Name="Код_должности" ColumnName="Код должности" />
                 <ScalarProperty Name="Код_контактных_данных" ColumnName="Код контактных данных" />
-                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Код_пользователя" ColumnName="Код пользователя" />
                 <ScalarProperty Name="Код_личных_данных" ColumnName="Код личных данных" />
                 <ScalarProperty Name="Дата_приёма_на_работу" ColumnName="Дата приёма на работу" />
               </MappingFragment>
@@ -1028,9 +985,7 @@
             <EntityTypeMapping TypeName="АптекаModel.Социальная_карта">
               <MappingFragment StoreEntitySet="Социальная карта">
                 <ScalarProperty Name="Код_социальной_карты" ColumnName="Код социальной карты" />
-                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
-                <ScalarProperty Name="Имя" ColumnName="Имя" />
-                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Код_личных_данных" ColumnName="Код личных данных" />
                 <ScalarProperty Name="Срок_действия" ColumnName="Срок действия" />
                 <ScalarProperty Name="Скидка" ColumnName="Скидка" />
               </MappingFragment>

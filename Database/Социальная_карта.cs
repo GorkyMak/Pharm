@@ -20,14 +20,13 @@ namespace Pharm.Database
             this.Заказ = new HashSet<Заказ>();
         }
     
-        public int Код_социальной_карты { get; set; }
-        public string Фамилия { get; set; }
-        public string Имя { get; set; }
-        public string Отчество { get; set; }
+        public string Код_социальной_карты { get; set; }
+        public int Код_личных_данных { get; set; }
         public System.DateTime Срок_действия { get; set; }
         public decimal Скидка { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Заказ> Заказ { get; set; }
+        public virtual Личные_данные Личные_данные { get; set; }
     }
 }

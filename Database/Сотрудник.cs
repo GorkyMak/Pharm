@@ -23,7 +23,7 @@ namespace Pharm.Database
         public int Код_сотрудника { get; set; }
         public int Код_должности { get; set; }
         public int Код_контактных_данных { get; set; }
-        public string Логин { get; set; }
+        public int Код_пользователя { get; set; }
         public int Код_личных_данных { get; set; }
         public System.DateTime Дата_приёма_на_работу { get; set; }
     

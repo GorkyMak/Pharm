@@ -20,6 +20,7 @@ namespace Pharm.Database
             this.Сотрудник = new HashSet<Сотрудник>();
         }
     
+        public int Код_пользователя { get; set; }
         public string Логин { get; set; }
         public string Пароль { get; set; }
         public string Роль { get; set; }

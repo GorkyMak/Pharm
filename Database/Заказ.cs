@@ -22,7 +22,7 @@ namespace Pharm.Database
     
         public int Код_заказа { get; set; }
         public int Код_сотрудника { get; set; }
-        public Nullable<int> Код_социальной_карты { get; set; }
+        public string Код_социальной_карты { get; set; }
         public System.DateTime Дата_и_время_исполнения { get; set; }
         public Nullable<decimal> Стоимость__ { get; set; }
     

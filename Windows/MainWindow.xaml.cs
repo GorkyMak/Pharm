@@ -1,21 +1,43 @@
-﻿using Pharm.Database;
-using System;
-using System.IO;
-using System.Text.Json;
+﻿using System;
 using System.Windows;
 
-namespace Pharm
+namespace Pharm.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        AboutProgram aboutProgram = new AboutProgram();
+        HelpSys helpSys = new HelpSys();
         public MainWindow()
         {
             InitializeComponent();
 
-            LUserRole.Content = "Здраствуйте, " + Properties.Settings.Default.UserRole;
+            if (Properties.Settings.Default.UserLogin != "")
+                LUserRole.Content += Properties.Settings.Default.UserLogin;
+
+            if (Properties.Settings.Default.UserRole != "")
+                switch (Properties.Settings.Default.UserRole)
+                {
+                    case "Заведующий аптекой":
+                        BtnUser.Visibility = Visibility.Collapsed;
+                        BtnMedication.Visibility = Visibility.Collapsed;
+                        BtnDelivery.Visibility = Visibility.Collapsed;
+                        BtnOrder.Visibility = Visibility.Collapsed;
+                        break;
+
+                    case "Бухгалтер":
+                        BtnEmployee.Visibility = Visibility.Collapsed;
+                        BtnUser.Visibility = Visibility.Collapsed;
+                        BtnMedication.Visibility = Visibility.Collapsed;
+                        BtnOrder.Visibility = Visibility.Collapsed;
+                        break;
+
+                    case "Продавец-фармацевт":
+                        BtnMedication.Visibility = Visibility.Collapsed;
+                        BtnDelivery.Visibility = Visibility.Collapsed;
+                        BtnEmployee.Visibility = Visibility.Collapsed;
+                        BtnUser.Visibility = Visibility.Collapsed;
+                        break;
+                }
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -32,63 +54,43 @@ namespace Pharm
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
-            new Windows.Authorization().Show();
+            new Authorization().Show();
             Close();
-        }
-
-        private void BtnRegOrder_Click(object sender, RoutedEventArgs e)
-        {
-            FrMain.Navigate(new Uri("Pages/RegOrder.xaml", UriKind.Relative));
         }
 
         private void BtnOrder_Click(object sender, RoutedEventArgs e)
         {
-            FrMain.Navigate(new Uri("Pages/ListOrders.xaml", UriKind.Relative));
+            FrMain.Navigate(new Uri("Pages/Info/ListOrders.xaml", UriKind.Relative));
         }
 
         private void BtnEmployee_Click(object sender, RoutedEventArgs e)
         {
-            FrMain.Navigate(new Uri("Pages/ListEmployees.xaml", UriKind.Relative));
+            FrMain.Navigate(new Uri("Pages/Info/ListEmployees.xaml", UriKind.Relative));
         }
 
         private void BtnMedication_Click(object sender, RoutedEventArgs e)
         {
-            FrMain.Navigate(new Uri("Pages/ListMedications.xaml", UriKind.Relative));
-        }
-
-        private void BtnSocCard_Click(object sender, RoutedEventArgs e)
-        {
-            FrMain.Navigate(new Uri("Pages/ListSocCards.xaml", UriKind.Relative));
+            FrMain.Navigate(new Uri("Pages/Info/ListMedications.xaml", UriKind.Relative));
         }
 
         private void BtnDelivery_Click(object sender, RoutedEventArgs e)
         {
-            FrMain.Navigate(new Uri("Pages/ListDeliveries.xaml", UriKind.Relative));
-        }
-
-        private void BtnPositions_Click(object sender, RoutedEventArgs e)
-        {
-            FrMain.Navigate(new Uri("Pages/ListPositions.xaml", UriKind.Relative));
-        }
-
-        private void BtnManufacturer_Click(object sender, RoutedEventArgs e)
-        {
-            FrMain.Navigate(new Uri("Pages/ListManufacturer.xaml", UriKind.Relative));
+            FrMain.Navigate(new Uri("Pages/Info/ListDeliveries.xaml", UriKind.Relative));
         }
 
         private void BtnUser_Click(object sender, RoutedEventArgs e)
         {
-            FrMain.Navigate(new Uri("Pages/ListUsers.xaml", UriKind.Relative));
+            FrMain.Navigate(new Uri("Pages/Info/ListUsers.xaml", UriKind.Relative));
         }
 
-        private void BtnSuppliers_Click(object sender, RoutedEventArgs e)
+        private void BtnAboutProg_Click(object sender, RoutedEventArgs e)
         {
-            FrMain.Navigate(new Uri("Pages/ListSuppliers.xaml", UriKind.Relative));
+            aboutProgram.Show();
         }
 
-        private void BtnWarehouses_Click(object sender, RoutedEventArgs e)
+        private void BtnHelp_Click(object sender, RoutedEventArgs e)
         {
-            FrMain.Navigate(new Uri("Pages/ListWarehouses.xaml", UriKind.Relative));
+            helpSys.Show();
         }
     }
 }

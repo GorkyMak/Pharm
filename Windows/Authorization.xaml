@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="Авторизация" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
-        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTBStyle}"/>
-        <Style TargetType="Button" BasedOn="{StaticResource BaseBtnStyle}">
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="IsDefault" Value="True"/>
         </Style>
     </Window.Resources>
-    
+
     <StackPanel VerticalAlignment="Center">
         <Image Height="100" Width="108" Source="/Images/pharmacy_image.png"/>
         <Label Content="Вход в систему" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="18"/>
+        <Separator Margin="0 10 0 0" Width="200"/>
         <Label Content="Логин" HorizontalAlignment="Center" Margin="0 10 0 0"/>
         <TextBox HorizontalAlignment="Center" x:Name="TBLogin" Width="200" Margin="0 1"/>
         <Label Content="Пароль" HorizontalAlignment="Center" Margin="0 5 0 0"/>

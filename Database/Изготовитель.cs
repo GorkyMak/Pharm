@@ -21,10 +21,8 @@ namespace Pharm.Database
         }
     
         public int Код_изготовителя { get; set; }
-        public int Код_контактных_данных { get; set; }
         public string Название { get; set; }
     
-        public virtual Контактные_данные Контактные_данные { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Препарат> Препарат { get; set; }
     }

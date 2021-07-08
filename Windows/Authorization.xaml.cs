@@ -1,12 +1,10 @@
 ﻿using Pharm.Database;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace Pharm.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для Authorization.xaml
-    /// </summary>
     public partial class Authorization : Window
     {
         public Authorization()
@@ -52,7 +50,7 @@ namespace Pharm.Windows
         private async static Task<Пользователи> FindUser(string Login)
         {
             using (АптекаEntities context = new АптекаEntities())
-                return await Task.Run(() => context.Пользователи.Find(Login));
+                return await Task.Run(() => context.Пользователи.FirstOrDefault(i => i.Логин == Login));
         }
 
         private bool CheckUser(ref Пользователи user, ref string Password)
@@ -75,6 +73,7 @@ namespace Pharm.Windows
         private void LogIn(ref Пользователи User)
         {
             Properties.Settings.Default.UserRole = User.Роль;
+            Properties.Settings.Default.UserLogin = User.Логин;
             new MainWindow().Show();
             Close();
         }

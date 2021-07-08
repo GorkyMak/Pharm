@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Pharm</RootNamespace>
     <AssemblyName>Pharm</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,6 +45,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -65,7 +74,6 @@
     <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -84,7 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\Middle_Medications.cs" />
+    <Compile Include="Classes\DataChecker.cs" />
+    <Compile Include="Classes\EmployeesComparer.cs" />
+    <Compile Include="Classes\ExcelHelper.cs" />
+    <Compile Include="Database\FullЛичные_данные.cs" />
     <Compile Include="Database\PharmModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +111,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PharmModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Database\UnionАдрес.cs" />
     <Compile Include="Database\Адрес.cs">
       <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
@@ -145,80 +157,90 @@
     <Compile Include="Database\Социальная_карта.cs">
       <DependentUpon>PharmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ListDeliveries.xaml.cs">
+    <Compile Include="Migrations\202105121623283_1.cs" />
+    <Compile Include="Migrations\202105121623283_1.Designer.cs">
+      <DependentUpon>202105121623283_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Pages\Edit\EditDeliveries.xaml.cs">
+      <DependentUpon>EditDeliveries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Edit\EditEmployee.xaml.cs">
+      <DependentUpon>EditEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Edit\EditMedications.xaml.cs">
+      <DependentUpon>EditMedications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Edit\EditOrders.xaml.cs">
+      <DependentUpon>EditOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Edit\EditUsers.xaml.cs">
+      <DependentUpon>EditUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Info\ListDeliveries.xaml.cs">
       <DependentUpon>ListDeliveries.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ListEmployees.xaml.cs">
+    <Compile Include="Pages\Info\ListEmployees.xaml.cs">
       <DependentUpon>ListEmployees.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ListManufacturer.xaml.cs">
-      <DependentUpon>ListManufacturer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ListMedications.xaml.cs">
+    <Compile Include="Pages\Info\ListMedications.xaml.cs">
       <DependentUpon>ListMedications.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ListOrders.xaml.cs">
+    <Compile Include="Pages\Info\ListOrders.xaml.cs">
       <DependentUpon>ListOrders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ListPositions.xaml.cs">
-      <DependentUpon>ListPositions.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ListSocCards.xaml.cs">
-      <DependentUpon>ListSocCards.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ListSuppliers.xaml.cs">
-      <DependentUpon>ListSuppliers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ListUsers.xaml.cs">
+    <Compile Include="Pages\Info\ListUsers.xaml.cs">
       <DependentUpon>ListUsers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ListWarehouses.xaml.cs">
-      <DependentUpon>ListWarehouses.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\RegOrder.xaml.cs">
-      <DependentUpon>RegOrder.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Pages\ListDeliveries.xaml">
+    <Page Include="Pages\Edit\EditDeliveries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListEmployees.xaml">
+    <Page Include="Pages\Edit\EditEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListManufacturer.xaml">
+    <Page Include="Pages\Edit\EditMedications.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListMedications.xaml">
+    <Page Include="Pages\Edit\EditOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListOrders.xaml">
+    <Page Include="Pages\Edit\EditUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListPositions.xaml">
+    <Page Include="Pages\Info\ListDeliveries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListSocCards.xaml">
+    <Page Include="Pages\Info\ListEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListSuppliers.xaml">
+    <Page Include="Pages\Info\ListMedications.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListUsers.xaml">
+    <Page Include="Pages\Info\ListOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ListWarehouses.xaml">
+    <Page Include="Pages\Info\ListUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RegOrder.xaml">
+    <Page Include="Windows\AboutProgram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\HelpSys.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,20 +248,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\Authorization.xaml.cs">
-      <DependentUpon>Authorization.xaml</DependentUpon>
+    <Compile Include="Windows\AboutProgram.xaml.cs">
+      <DependentUpon>AboutProgram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\HelpSys.xaml.cs">
+      <DependentUpon>HelpSys.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Windows\Authorization.xaml.cs">
+      <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +279,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202105121623283_1.resx">
+      <DependentUpon>202105121623283_1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

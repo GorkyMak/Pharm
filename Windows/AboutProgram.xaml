@@ -1,0 +1,19 @@
+﻿<Window x:Class="Pharm.Windows.AboutProgram"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pharm.Windows"
+        mc:Ignorable="d"
+        Title="О программе" Height="200" Width="260" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <Label Content="Курсовая работа по РПМ"/>
+                <Label Content="Сделал: Калинаев Максим Витальевич"/>
+                <Label Content="Группа: 1281"/>
+                <Label Content="Курс: 3"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

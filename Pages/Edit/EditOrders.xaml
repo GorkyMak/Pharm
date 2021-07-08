@@ -1,0 +1,89 @@
+﻿<Page x:Class="Pharm.Pages.Edit.EditOrders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Pharm.Pages.Edit"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditOrders">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer>
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel x:Name="sp" Grid.Row="1">
+                    <CheckBox x:Name="ChBSocCard" Content="Наличие социальной карты" Margin="0 5 0 0"/>
+                    <StackPanel x:Name="SpSocCard">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ChBSocCard, Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <Label Content="Код социальной карты"/>
+                        <TextBox x:Name="tb3" Text="{Binding Код_социальной_карты, Mode=TwoWay}"/>
+                        <Label Content="Например, 1234 5678 9012 1234" FontSize="12" FontStyle="Italic"/>
+                        <Label Content="Фамилия владельца"/>
+                        <TextBox x:Name="tb4" Text="{Binding Социальная_карта.Личные_данные.Фамилия, Mode=TwoWay}"/>
+                        <Label Content="Имя владельца"/>
+                        <TextBox x:Name="tb5" Text="{Binding Социальная_карта.Личные_данные.Имя, Mode=TwoWay}"/>
+                        <Label Content="Отчество владельца"/>
+                        <TextBox x:Name="tb6" Text="{Binding Социальная_карта.Личные_данные.Отчество, Mode=TwoWay}"/>
+                        <Label Content="Срок действия"/>
+                        <DatePicker x:Name="tb7" SelectedDate="{Binding Социальная_карта.Срок_действия, Mode=TwoWay}"/>
+                        <Label Content="Скидка"/>
+                        <TextBox x:Name="tb8" Text="{Binding Социальная_карта.Скидка, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <Label Content="Дата исполнения заказа"/>
+                    <DatePicker x:Name="tb9" SelectedDate="{Binding Дата_и_время_исполнения, Mode=TwoWay}"/>
+                    <Label Content="Время исполнения заказа"/>
+                    <TextBox x:Name="tb91" Text="{Binding Дата_и_время_исполнения, Mode=TwoWay, StringFormat=HH:mm}"/>
+                    <Label Content="Стоимость"/>
+                    <TextBox x:Name="tb10" Text="{Binding Стоимость__}" IsReadOnly="True"/>
+                </StackPanel>
+
+                <DataGrid x:Name="DGOrdMed" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" CanUserAddRows="True" ItemsSource="{Binding Заказ_Препарат}" MinHeight="50">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Код препарата" Binding="{Binding Препарат.Код_препарата}"/>
+                        <DataGridTextColumn Header="Название препарата" Binding="{Binding Препарат.Название}"/>
+                        <DataGridTextColumn Header="Количество препарата" Binding="{Binding Количество_препарата}"/>
+                    </DataGrid.Columns>
+
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="MIAdd" Header="Добавить" Click="MIAdd_Click"/>
+                            <MenuItem x:Name="MIChange" Header="Изменить" Click="MIChange_Click"/>
+                            <MenuItem x:Name="MIDelete" Header="Удалить" Click="MIDelete_Click"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+
+                <StackPanel x:Name="SpEdit" Visibility="Collapsed">
+                    <Label Content="Название препарата"/>
+                    <ComboBox x:Name="Cmb1" Text="{Binding Препарат.Название}"/>
+                    <Label Content="Количество препарата"/>
+                    <TextBox x:Name="tb33" Text="{Binding Количество_препарата, Mode=TwoWay}"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="10" Orientation="Horizontal">
+            <Button x:Name="BtnAddEditDel" Content="Изменить" Width="100" Click="BtnAddEditDel_Click"/>
+            <Button x:Name="BtnAddEditMedDel" Content="Изменить" Width="100" Click="BtnAddEditDel_ClickSecond" Visibility="Collapsed"/>
+        </StackPanel>
+    </Grid>
+</Page>

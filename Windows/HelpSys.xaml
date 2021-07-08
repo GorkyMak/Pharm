@@ -1,0 +1,16 @@
+﻿<Window x:Class="Pharm.Windows.HelpSys"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pharm.Windows"
+        mc:Ignorable="d"
+        Title="Справка" Height="400" Width="400" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <WrapPanel>
+        <ScrollViewer>
+            <TextBlock TextWrapping="Wrap">
+                В данной программе реализовано ведение информации о заказах препаратах и вывод отчётов. Для авторизации используйте данный администратором логин и пароль, и введите в соответствующие поля в окне авторизации. После этого нажмите на кнопку «Войти» для перехода на главное окно. В этом окне вы можете изменять, добавлять и удалять данные из соответствующей таблицы соответствующей вашей роли в базе данных. Для этого на панели сверху нажмите на нужную таблицу для её открытия. Правая кнопка мыши открывает меню выбора действий добавления, редактирования и удаления (для некоторых ролей). В следующих окнах достаточно ввести данные и нажать кнопку сохранить. Если ваша роль «Заведующий аптеки» вам доступна опция вывода отчётов Word и Excel/ Для формирования отчета на той же панели выберете пункт «Заказы» и нажмите внизу кнопку «Вывести отчёт» и выберите место сохранения отчёта
+            </TextBlock>
+        </ScrollViewer>
+    </WrapPanel>
+</Window>
